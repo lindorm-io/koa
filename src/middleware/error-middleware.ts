@@ -1,5 +1,5 @@
 import { Context } from "koa";
-import { HttpStatus, TPromise } from "@lindorm-io/global";
+import { HttpStatus, TPromise } from "@lindorm-io/core";
 
 export const errorMiddleware = async (ctx: Context, next: TPromise<void>): Promise<void> => {
   try {

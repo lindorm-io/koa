@@ -36,6 +36,8 @@
     "validate": "npm run test:clear && npm run lint && npm run typecheck && npm run test"
   },
   "dependencies": {
+    "@lindorm-io/core": "^0.0.1",
+    "@lindorm-io/winston": "^0.0.2",
     "koa": "^2.13.0",
     "koa-bodyparser": "^4.3.0",
     "koa-router": "^9.4.0",
@@ -43,21 +45,14 @@
     "lodash": "^4.17.20",
     "uuid": "^8.3.1"
   },
-  "peerDependencies": {
-    "@lindorm-io/common": ">=0.0.1",
-    "@lindorm-io/global": ">=0.0.1",
-    "@lindorm-io/winston": ">=0.0.1"
-  },
+  "peerDependencies": {},
   "devDependencies": {
-    "@lindorm-io/common": "^0.0.1",
-    "@lindorm-io/global": "^0.0.1",
-    "@lindorm-io/winston": "^0.0.1",
     "@types/express-useragent": "^1.0.0",
     "@types/jest": "^26.0.15",
     "@types/koa": "^2.11.6",
     "@types/koa-bodyparser": "^4.3.0",
     "@types/koa-router": "^7.4.1",
-    "@types/lodash": "^4.14.163",
+    "@types/lodash": "^4.14.164",
     "@types/node": "^14.14.6",
     "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.6.0",

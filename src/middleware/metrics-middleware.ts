@@ -1,5 +1,5 @@
 import { IKoaAppContext } from "../typing";
-import { TPromise } from "@lindorm-io/global";
+import { TPromise } from "@lindorm-io/core";
 
 export const metricsMiddleware = async (ctx: IKoaAppContext, next: TPromise<void>): Promise<void> => {
   const start = Date.now();
@@ -12,7 +12,7 @@ export const metricsMiddleware = async (ctx: IKoaAppContext, next: TPromise<void
     const stop = Date.now() - start;
 
     ctx.metrics = {
-      ...ctx.metrics,
+      ...(ctx.metrics || {}),
       responseTime: stop,
     };
     ctx.logger.debug("metrics", ctx.metrics);

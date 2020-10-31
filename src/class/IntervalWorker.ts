@@ -1,7 +1,7 @@
 import Timeout = NodeJS.Timeout;
 import { EventEmitter } from "events";
 import { Logger } from "@lindorm-io/winston";
-import { TObject, TPromise } from "@lindorm-io/global";
+import { TObject, TPromise } from "@lindorm-io/core";
 
 export interface IIntervalWorkerOptions {
   callback: TPromise<any>;

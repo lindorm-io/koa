@@ -1,6 +1,6 @@
 import { IKoaAppContext } from "../typing";
 import { Logger } from "@lindorm-io/winston";
-import { TPromise } from "@lindorm-io/global";
+import { TPromise } from "@lindorm-io/core";
 import { v1 as uuid } from "uuid";
 
 export interface ISessionLoggerMiddlewareOptions {
@@ -15,7 +15,7 @@ export const sessionLoggerMiddleware = (options: ISessionLoggerMiddlewareOptions
 
   await next();
 
-  ctx.logger.info("API Response", {
+  ctx.logger.info("Service Response", {
     request: ctx.request,
     response: ctx.response,
   });

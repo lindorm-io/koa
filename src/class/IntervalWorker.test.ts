@@ -1,5 +1,5 @@
 import { IntervalWorker } from "./IntervalWorker";
-import { TPromise } from "@lindorm-io/global";
+import { TPromise } from "@lindorm-io/core";
 
 const sleep = (time: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, time));
 
