@@ -21,6 +21,7 @@ export class KoaApp {
   readonly app: Koa;
   readonly router: Router;
 
+  private loaded: boolean;
   private logger: Logger;
   private middleware: Array<Middleware>;
   private port: number;
@@ -30,6 +31,7 @@ export class KoaApp {
     this.app = new Koa();
     this.router = new Router();
 
+    this.loaded = false;
     this.logger = options.logger;
     this.middleware = [
       userAgent,
@@ -60,10 +62,20 @@ export class KoaApp {
     this.workers.push(worker);
   }
 
-  public async start(): Promise<void> {
+  public load(): void {
+    this.loaded = true;
+
     this.loadMiddleware();
     this.loadRouter();
     this.loadEmitter();
+
+    this.logger.info("app is loaded");
+  }
+
+  public async start(): Promise<void> {
+    if (!this.loaded) {
+      this.load();
+    }
 
     this.listen();
 
