@@ -46,8 +46,8 @@ export class KoaApp {
     this.workers = [];
   }
 
-  public callback(): void {
-    this.app.callback();
+  public callback(): any {
+    return this.app.callback();
   }
 
   public addMiddleware(middleware: Middleware): void {
