@@ -1,6 +1,11 @@
 import { bodyCaseSwitchMiddleware } from "./body-case-switch-middleware";
 
 describe("body-case-switch-middleware.ts", () => {
+  const array = ["array"];
+  const date = new Date();
+  const error = new Error("error");
+  const string = "string";
+
   let ctx: any;
   let next: any;
 
@@ -11,14 +16,23 @@ describe("body-case-switch-middleware.ts", () => {
           camelCase: "camelCase",
           PascalCase: "PascalCase",
           snake_case: "snake_case",
+          array,
+          date,
+          error,
+          string,
         },
       },
       body: {
         camelCase: "camelCase",
         PascalCase: "PascalCase",
         snake_case: "snake_case",
+        array,
+        date,
+        error,
+        string,
       },
     };
+
     next = () => Promise.resolve();
   });
 
@@ -28,6 +42,10 @@ describe("body-case-switch-middleware.ts", () => {
       camelCase: "camelCase",
       pascalCase: "PascalCase",
       snakeCase: "snake_case",
+      array,
+      date,
+      error,
+      string,
     });
   });
 
@@ -37,6 +55,10 @@ describe("body-case-switch-middleware.ts", () => {
       camel_case: "camelCase",
       pascal_case: "PascalCase",
       snake_case: "snake_case",
+      array,
+      date,
+      error,
+      string,
     });
   });
 
