@@ -47,6 +47,10 @@ export class KoaApp {
   }
 
   public callback(): any {
+    if (!this.loaded) {
+      this.load();
+    }
+
     return this.app.callback();
   }
 
