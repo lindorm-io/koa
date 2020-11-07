@@ -8,12 +8,13 @@ export const errorMiddleware = async (ctx: Context, next: TPromise<void>): Promi
     ctx.status = error.statusCode || error.status || HttpStatus.ServerError.INTERNAL_SERVER_ERROR;
     ctx.body = {
       error: {
-        message: error.message,
+        code: error.errorCode || error.code,
         details: error.details,
+        message: error.message,
         title: error.title,
       },
     };
 
-    ctx.app.emit("error", { error, ctx });
+    ctx.app.emit("error", error);
   }
 };

@@ -92,8 +92,8 @@ export class KoaApp {
   }
 
   private loadEmitter(): void {
-    this.app.on("error", (eventData: any): void => {
-      this.logger.error("app caught error", eventData);
+    this.app.on("error", (error: Error): void => {
+      this.logger.error("app caught error", error);
     });
 
     this.app.on("start", (): void => {
