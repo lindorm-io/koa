@@ -8,10 +8,12 @@ export const errorMiddleware = async (ctx: Context, next: TPromise<void>): Promi
     ctx.status = error.statusCode || error.status || HttpStatus.ServerError.INTERNAL_SERVER_ERROR;
     ctx.body = {
       error: {
-        code: error.errorCode || error.code,
-        details: error.details,
+        code: error.errorCode || error.code || null,
+        data: error.publicData || error.data || null,
+        details: error.details || null,
         message: error.message,
-        title: error.title,
+        name: error.name || null,
+        title: error.title || null,
       },
     };
 

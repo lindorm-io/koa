@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bodyCaseSwitchMiddleware should not fail if there is no body 1`] = `Object {}`;
+
+exports[`bodyCaseSwitchMiddleware should not fail if there is no body 2`] = `Object {}`;
+
+exports[`bodyCaseSwitchMiddleware should transform all incoming body to camelCase 1`] = `
+Object {
+  "array": Array [
+    "array",
+  ],
+  "camelCase": "camelCase",
+  "date": 2020-01-01T07:00:00.000Z,
+  "error": [Error: error],
+  "pascalCase": "PascalCase",
+  "snakeCase": "snake_case",
+  "string": "string",
+}
+`;
+
+exports[`bodyCaseSwitchMiddleware should transform all outgoing body to snake_case 1`] = `
+Object {
+  "array": Array [
+    "array",
+  ],
+  "camel_case": "camelCase",
+  "date": 2020-01-01T07:00:00.000Z,
+  "error": [Error: error],
+  "pascal_case": "PascalCase",
+  "snake_case": "snake_case",
+  "string": "string",
+}
+`;

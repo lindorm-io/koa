@@ -1,6 +1,9 @@
+import MockDate from "mockdate";
 import { bodyCaseSwitchMiddleware } from "./body-case-switch-middleware";
 
-describe("body-case-switch-middleware.ts", () => {
+MockDate.set("2020-01-01 08:00:00.000");
+
+describe("bodyCaseSwitchMiddleware", () => {
   const array = ["array"];
   const date = new Date();
   const error = new Error("error");
@@ -38,35 +41,19 @@ describe("body-case-switch-middleware.ts", () => {
 
   test("should transform all incoming body to camelCase", async () => {
     await expect(bodyCaseSwitchMiddleware(ctx, next)).resolves.toBe(undefined);
-    expect(ctx.request.body).toStrictEqual({
-      camelCase: "camelCase",
-      pascalCase: "PascalCase",
-      snakeCase: "snake_case",
-      array,
-      date,
-      error,
-      string,
-    });
+    expect(ctx.request.body).toMatchSnapshot();
   });
 
   test("should transform all outgoing body to snake_case", async () => {
     await expect(bodyCaseSwitchMiddleware(ctx, next)).resolves.toBe(undefined);
-    expect(ctx.body).toStrictEqual({
-      camel_case: "camelCase",
-      pascal_case: "PascalCase",
-      snake_case: "snake_case",
-      array,
-      date,
-      error,
-      string,
-    });
+    expect(ctx.body).toMatchSnapshot();
   });
 
   test("should not fail if there is no body", async () => {
     ctx = { request: { body: undefined }, body: undefined };
 
     await expect(bodyCaseSwitchMiddleware(ctx, next)).resolves.toBe(undefined);
-    expect(ctx.request.body).toStrictEqual({});
-    expect(ctx.body).toStrictEqual({});
+    expect(ctx.request.body).toMatchSnapshot();
+    expect(ctx.body).toMatchSnapshot();
   });
 });

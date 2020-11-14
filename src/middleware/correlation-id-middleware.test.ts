@@ -4,7 +4,7 @@ jest.mock("uuid", () => ({
   v1: jest.fn(() => "uuid-correlation-id"),
 }));
 
-describe("correlation-id-middleware.ts", () => {
+describe("correlationIdMiddleware", () => {
   let ctx: any;
   let next: any;
 
