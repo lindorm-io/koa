@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`correlationIdMiddleware should use correlation id from header if it exists 1`] = `
+Object {
+  "clientEnvironment": "X-Client-Environment",
+  "clientId": "X-Client-ID",
+  "clientName": "X-Client-Name",
+  "clientPlatform": "X-Client-Platform",
+  "clientVersion": "X-Client-Version",
+  "correlationId": "X-Correlation-ID",
+  "deviceId": "X-Device-ID",
+  "installationId": "X-Installation-ID",
+  "sessionId": "X-Session-ID",
+}
+`;
+
+exports[`correlationIdMiddleware should use uuid if header does not exist 1`] = `
+Object {
+  "clientEnvironment": null,
+  "clientId": null,
+  "clientName": null,
+  "clientPlatform": null,
+  "clientVersion": null,
+  "correlationId": "0dacd3cc-035e-4968-881e-1fc30d496121",
+  "deviceId": null,
+  "installationId": null,
+  "sessionId": "a26dad28-e854-447d-bce6-5c685cddfea8",
+}
+`;

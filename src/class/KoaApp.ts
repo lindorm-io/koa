@@ -6,7 +6,7 @@ import { IntervalWorker } from "./IntervalWorker";
 import { Logger } from "@lindorm-io/winston";
 import {
   bodyCaseSwitchMiddleware,
-  correlationIdMiddleware,
+  metadataMiddleware,
   errorMiddleware,
   metricsMiddleware,
   sessionLoggerMiddleware,
@@ -37,7 +37,7 @@ export class KoaApp {
       userAgent,
       bodyParser(),
       bodyCaseSwitchMiddleware,
-      correlationIdMiddleware,
+      metadataMiddleware,
       sessionLoggerMiddleware({ logger: this.logger }),
       metricsMiddleware,
       errorMiddleware,

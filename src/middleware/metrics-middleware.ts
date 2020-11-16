@@ -4,7 +4,9 @@ import { TPromise } from "@lindorm-io/core";
 export const metricsMiddleware = async (ctx: IKoaAppContext, next: TPromise<void>): Promise<void> => {
   const start = Date.now();
 
-  ctx.metrics = {};
+  ctx.metrics = {
+    ...(ctx.metrics || {}),
+  };
 
   try {
     await next();
