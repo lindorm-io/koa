@@ -1,6 +1,6 @@
 import { IKoaAppContext } from "../typing";
 import { TPromise } from "@lindorm-io/core";
-import uuid from "uuid";
+import { v1 as uuidv1, v4 as uuidv4 } from "uuid";
 
 export const metadataMiddleware = async (ctx: IKoaAppContext, next: TPromise<void>) => {
   ctx.metadata = {
@@ -11,10 +11,10 @@ export const metadataMiddleware = async (ctx: IKoaAppContext, next: TPromise<voi
     clientPlatform: ctx.get("X-Client-Platform") || null,
     clientVersion: ctx.get("X-Client-Version") || null,
 
-    correlationId: ctx.get("X-Correlation-ID") || uuid.v1(),
+    correlationId: ctx.get("X-Correlation-ID") || uuidv1(),
     deviceId: ctx.get("X-Device-ID") || null,
     installationId: ctx.get("X-Installation-ID") || null,
-    sessionId: ctx.get("X-Session-ID") || uuid.v4(),
+    sessionId: ctx.get("X-Session-ID") || uuidv4(),
   };
 
   await next();
