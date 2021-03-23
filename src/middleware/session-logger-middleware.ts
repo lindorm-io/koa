@@ -1,7 +1,6 @@
-import { IKoaAppContext } from "../typing";
+import { IKoaAppContext, TNext } from "../typing";
 import { Logger } from "@lindorm-io/winston";
 import { Middleware } from "koa";
-import { TPromise } from "@lindorm-io/core";
 
 export interface ISessionLoggerMiddlewareOptions {
   logger: Logger;
@@ -9,7 +8,7 @@ export interface ISessionLoggerMiddlewareOptions {
 
 export const sessionLoggerMiddleware = (options: ISessionLoggerMiddlewareOptions): Middleware => async (
   ctx: IKoaAppContext,
-  next: TPromise<void>,
+  next: TNext,
 ): Promise<void>  => {
   ctx.logger = options.logger.createSessionLogger({ correlationId: ctx.metadata.correlationId });
 

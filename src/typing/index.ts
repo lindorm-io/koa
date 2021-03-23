@@ -1,7 +1,8 @@
 import { ParameterizedContext } from "koa";
 import { Logger } from "@lindorm-io/winston";
-import { TObject } from "@lindorm-io/core";
 import { IRouterParamContext } from "koa-router";
+
+export type TNext = () => Promise<void>
 
 export interface IKoaAppMetadata {
   clientId: string;
@@ -18,6 +19,6 @@ export interface IKoaAppMetadata {
 
 export interface IKoaAppContext extends ParameterizedContext<any, IRouterParamContext<any, Record<any, unknown>>> {
   metadata: IKoaAppMetadata;
-  metrics: TObject<number>;
+  metrics: Record<string, number>;
   logger: Logger;
 }

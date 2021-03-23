@@ -1,8 +1,7 @@
-import { IKoaAppContext } from "../typing";
-import { TPromise } from "@lindorm-io/core";
+import { IKoaAppContext, TNext } from "../typing";
 import { v1 as uuidv1, v4 as uuidv4 } from "uuid";
 
-export const metadataMiddleware = async (ctx: IKoaAppContext, next: TPromise<void>): Promise<void> => {
+export const metadataMiddleware = async (ctx: IKoaAppContext, next: TNext): Promise<void> => {
   ctx.metadata = {
     ...(ctx.metadata || {}),
     clientId: ctx.get("X-Client-ID") || null,

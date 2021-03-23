@@ -1,4 +1,4 @@
-import { APIError } from "@lindorm-io/core";
+import { APIError } from "@lindorm-io/errors";
 import { errorMiddleware } from "./error-middleware";
 
 describe("errorMiddleware", () => {

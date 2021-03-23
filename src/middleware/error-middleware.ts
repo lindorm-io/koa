@@ -1,7 +1,8 @@
 import { Context } from "koa";
-import { HttpStatus, TPromise } from "@lindorm-io/core";
+import { HttpStatus } from "@lindorm-io/core";
+import { TNext } from "../typing";
 
-export const errorMiddleware = async (ctx: Context, next: TPromise<void>): Promise<void> => {
+export const errorMiddleware = async (ctx: Context, next: TNext): Promise<void> => {
   try {
     await next();
   } catch (error) {

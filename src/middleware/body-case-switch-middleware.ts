@@ -1,7 +1,7 @@
-import { IKoaAppContext } from "../typing";
-import { TPromise, camelKeys, snakeKeys } from "@lindorm-io/core";
+import { IKoaAppContext, TNext } from "../typing";
+import { camelKeys, snakeKeys } from "@lindorm-io/core";
 
-export const bodyCaseSwitchMiddleware = async (ctx: IKoaAppContext, next: TPromise<void>): Promise<void> => {
+export const bodyCaseSwitchMiddleware = async (ctx: IKoaAppContext, next: TNext): Promise<void> => {
   ctx.request.body = camelKeys(ctx.request.body || {});
 
   await next();

@@ -1,5 +1,4 @@
 import { IntervalWorker } from "./IntervalWorker";
-import { TPromise } from "@lindorm-io/core";
 
 const sleep = (time: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, time));
 
@@ -8,7 +7,7 @@ describe("IntervalWorker.ts", () => {
   let worker: IntervalWorker;
 
   let mockLogger: any;
-  let callback: TPromise<any>;
+  let callback: any;
 
   beforeEach(() => {
     eventResult = {};

@@ -1,10 +1,9 @@
 import Timeout = NodeJS.Timeout;
 import { EventEmitter } from "events";
 import { Logger } from "@lindorm-io/winston";
-import { TObject, TPromise } from "@lindorm-io/core";
 
 export interface IIntervalWorkerOptions {
-  callback: TPromise<any>;
+  callback: () => Promise<any>;
   time: number;
   logger: Logger;
 }
@@ -17,7 +16,7 @@ enum IntervalWorkerEvent {
 }
 
 export class IntervalWorker extends EventEmitter {
-  private callback: TPromise<any>;
+  private callback: () => Promise<any>;
   private interval: Timeout;
   private logger: Logger;
   private time: number;
@@ -58,7 +57,7 @@ export class IntervalWorker extends EventEmitter {
     super.emit(IntervalWorkerEvent.STOP);
   }
 
-  public static get Event(): TObject<IntervalWorkerEvent> {
+  public static get Event(): Record<string, IntervalWorkerEvent> {
     return IntervalWorkerEvent;
   }
 }

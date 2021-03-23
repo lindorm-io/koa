@@ -1,7 +1,6 @@
-import { IKoaAppContext } from "../typing";
-import { TPromise } from "@lindorm-io/core";
+import { IKoaAppContext, TNext } from "../typing";
 
-export const metricsMiddleware = async (ctx: IKoaAppContext, next: TPromise<void>): Promise<void> => {
+export const metricsMiddleware = async (ctx: IKoaAppContext, next: TNext): Promise<void> => {
   const start = Date.now();
 
   ctx.metrics = {
