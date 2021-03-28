@@ -16,6 +16,7 @@ export const sessionLoggerMiddleware = (options: ISessionLoggerMiddlewareOptions
 
   ctx.logger.info("Service Response", {
     request: {
+      agent: ctx.agent,
       header: ctx.request.header,
       metadata: ctx.metadata,
       method: ctx.request.method,
