@@ -10,6 +10,7 @@ import {
   errorMiddleware,
   metricsMiddleware,
   sessionLoggerMiddleware,
+  defaultStatusMiddleware,
 } from "../middleware";
 
 export interface IKoaAppOptions {
@@ -36,6 +37,7 @@ export class KoaApp {
     this.middleware = [
       userAgent,
       bodyParser(),
+      defaultStatusMiddleware,
       bodyCaseSwitchMiddleware,
       metadataMiddleware,
       sessionLoggerMiddleware({ logger: this.logger }),
