@@ -12,6 +12,14 @@ describe("correlationIdMiddleware", () => {
   beforeEach(() => {
     ctx = {
       get: jest.fn((name) => name),
+      userAgent: {
+        browser: "browser",
+        geoIp: { geoIp: 1 },
+        os: "os",
+        platform: "platform",
+        source: "source",
+        version: "version",
+      },
     };
     next = () => Promise.resolve();
   });
@@ -26,5 +34,17 @@ describe("correlationIdMiddleware", () => {
 
     await expect(metadataMiddleware(ctx, next)).resolves.toBe(undefined);
     expect(ctx.metadata).toMatchSnapshot();
+  });
+
+  test("should set user agent data", async () => {
+    await expect(metadataMiddleware(ctx, next)).resolves.toBe(undefined);
+    expect(ctx.agent).toMatchSnapshot();
+  });
+
+  test("should set null if agent data does not exist", async () => {
+    ctx.userAgent = undefined;
+
+    await expect(metadataMiddleware(ctx, next)).resolves.toBe(undefined);
+    expect(ctx.agent).toMatchSnapshot();
   });
 });

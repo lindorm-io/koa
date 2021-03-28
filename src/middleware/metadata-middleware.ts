@@ -1,7 +1,21 @@
 import { IKoaAppContext, TNext } from "../typing";
 import { v1 as uuidv1, v4 as uuidv4 } from "uuid";
 
-export const metadataMiddleware = async (ctx: IKoaAppContext, next: TNext): Promise<void> => {
+interface IKoaMetadataMiddleware extends IKoaAppContext {
+  userAgent: Record<string, any>;
+}
+
+export const metadataMiddleware = async (ctx: IKoaMetadataMiddleware, next: TNext): Promise<void> => {
+  ctx.agent = {
+    ...(ctx.agent || {}),
+    browser: ctx.userAgent?.browser || null,
+    geoIp: ctx.userAgent?.geoIp || null,
+    os: ctx.userAgent?.os || null,
+    platform: ctx.userAgent?.platform || null,
+    source: ctx.userAgent?.source || null,
+    version: ctx.userAgent?.version || null,
+  };
+
   ctx.metadata = {
     ...(ctx.metadata || {}),
     clientId: ctx.get("X-Client-ID") || null,
