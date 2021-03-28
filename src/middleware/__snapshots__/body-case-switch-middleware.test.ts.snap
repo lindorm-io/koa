@@ -2,7 +2,7 @@
 
 exports[`bodyCaseSwitchMiddleware should not fail if there is no body 1`] = `Object {}`;
 
-exports[`bodyCaseSwitchMiddleware should not fail if there is no body 2`] = `Object {}`;
+exports[`bodyCaseSwitchMiddleware should not fail if there is no body 2`] = `undefined`;
 
 exports[`bodyCaseSwitchMiddleware should transform all incoming body to camelCase 1`] = `
 Object {
