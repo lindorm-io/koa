@@ -18,12 +18,11 @@ export const metadataMiddleware = async (ctx: IKoaMetadataMiddleware, next: TNex
 
   ctx.metadata = {
     ...(ctx.metadata || {}),
-    clientId: ctx.get("X-Client-ID") || null,
     clientEnvironment: ctx.get("X-Client-Environment") || null,
+    clientId: ctx.get("X-Client-ID") || null,
     clientName: ctx.get("X-Client-Name") || null,
     clientPlatform: ctx.get("X-Client-Platform") || null,
     clientVersion: ctx.get("X-Client-Version") || null,
-
     correlationId: ctx.get("X-Correlation-ID") || uuidv1(),
     deviceId: ctx.get("X-Device-ID") || null,
     installationId: ctx.get("X-Installation-ID") || null,

@@ -1,8 +1,8 @@
-import { ParameterizedContext } from "koa";
-import { Logger } from "@lindorm-io/winston";
 import { IRouterParamContext } from "koa-router";
+import { Logger } from "@lindorm-io/winston";
+import { ParameterizedContext } from "koa";
 
-export type TNext = () => Promise<void>
+export type TNext = () => Promise<void>;
 
 export interface IKoaAppAgent {
   browser: string;
@@ -13,13 +13,24 @@ export interface IKoaAppAgent {
   version: string;
 }
 
+export interface IKoaAppMetaHeaders {
+  "X-Client-Environment": string;
+  "X-Client-ID": string;
+  "X-Client-Name": string;
+  "X-Client-Platform": string;
+  "X-Client-Version": string;
+  "X-Correlation-ID": string;
+  "X-Device-ID": string;
+  "X-Installation-ID": string;
+  "X-Session-ID": string;
+}
+
 export interface IKoaAppMetadata {
-  clientId: string;
   clientEnvironment: string;
+  clientId: string;
   clientName: string;
   clientPlatform: string;
   clientVersion: string;
-
   correlationId: string;
   deviceId: string;
   installationId: string;
