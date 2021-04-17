@@ -33,7 +33,40 @@ Object {
 }
 `;
 
-exports[`controllerMiddleware should set controller on context 1`] = `
+exports[`controllerMiddleware should set handler on context 1`] = `
+Object {
+  "agent": "agent",
+  "cache": "cache",
+  "controller": Object {
+    "data": "data",
+  },
+  "handler": Object {
+    "test": Test {
+      "agent": "agent",
+      "cache": "cache",
+      "handler": [Circular],
+      "issuer": "issuer",
+      "keystore": "keystore",
+      "logger": "logger",
+      "metadata": "metadata",
+      "metrics": "metrics",
+      "repository": "repository",
+      "support": "support",
+      "token": "token",
+    },
+  },
+  "issuer": "issuer",
+  "keystore": "keystore",
+  "logger": "logger",
+  "metadata": "metadata",
+  "metrics": "metrics",
+  "repository": "repository",
+  "support": "support",
+  "token": "token",
+}
+`;
+
+exports[`controllerMiddleware should set handler with specific key 1`] = `
 Object {
   "agent": "agent",
   "cache": "cache",

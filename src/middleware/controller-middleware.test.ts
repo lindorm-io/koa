@@ -35,4 +35,9 @@ describe("controllerMiddleware", () => {
     ctx.handler.data = "new-data";
     expect(ctx).toMatchSnapshot();
   });
+
+  test("should set controller with specific key", async () => {
+    await expect(controllerMiddleware(Test, "otherKey")(ctx, next)).resolves.toBe(undefined);
+    expect(ctx).toMatchSnapshot();
+  });
 });

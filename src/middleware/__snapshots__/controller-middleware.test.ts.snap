@@ -69,3 +69,38 @@ Object {
   "token": "token",
 }
 `;
+
+exports[`controllerMiddleware should set controller with specific key 1`] = `
+Object {
+  "agent": "agent",
+  "cache": "cache",
+  "controller": Object {
+    "otherKey": Test {
+      "agent": "agent",
+      "cache": "cache",
+      "handler": Object {
+        "data": "data",
+      },
+      "issuer": "issuer",
+      "keystore": "keystore",
+      "logger": "logger",
+      "metadata": "metadata",
+      "metrics": "metrics",
+      "repository": "repository",
+      "support": "support",
+      "token": "token",
+    },
+  },
+  "handler": Object {
+    "data": "data",
+  },
+  "issuer": "issuer",
+  "keystore": "keystore",
+  "logger": "logger",
+  "metadata": "metadata",
+  "metrics": "metrics",
+  "repository": "repository",
+  "support": "support",
+  "token": "token",
+}
+`;

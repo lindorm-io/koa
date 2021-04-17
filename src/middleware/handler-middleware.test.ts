@@ -25,7 +25,7 @@ describe("controllerMiddleware", () => {
     next = () => Promise.resolve();
   });
 
-  test("should set controller on context", async () => {
+  test("should set handler on context", async () => {
     await expect(handlerMiddleware(Test)(ctx, next)).resolves.toBe(undefined);
     expect(ctx).toMatchSnapshot();
   });
@@ -33,6 +33,11 @@ describe("controllerMiddleware", () => {
   test("should set and keep references", async () => {
     await expect(handlerMiddleware(Test)(ctx, next)).resolves.toBe(undefined);
     ctx.controller.data = "new-data";
+    expect(ctx).toMatchSnapshot();
+  });
+
+  test("should set handler with specific key", async () => {
+    await expect(handlerMiddleware(Test)(ctx, next)).resolves.toBe(undefined);
     expect(ctx).toMatchSnapshot();
   });
 });
