@@ -5,14 +5,13 @@ Object {
   "agent": "agent",
   "cache": "cache",
   "controller": Object {
-    "data": "data",
+    "data": "new-data",
   },
   "handler": Object {
-    "data": "new-data",
     "test": Test {
       "agent": "agent",
       "cache": "cache",
-      "handler": Object {},
+      "handler": [Circular],
       "issuer": "issuer",
       "keystore": "keystore",
       "logger": "logger",
@@ -45,7 +44,7 @@ Object {
     "test": Test {
       "agent": "agent",
       "cache": "cache",
-      "handler": Object {},
+      "handler": [Circular],
       "issuer": "issuer",
       "keystore": "keystore",
       "logger": "logger",

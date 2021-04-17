@@ -32,7 +32,7 @@ describe("controllerMiddleware", () => {
 
   test("should set and keep references", async () => {
     await expect(handlerMiddleware(Test)(ctx, next)).resolves.toBe(undefined);
-    ctx.handler.data = "new-data";
+    ctx.controller.data = "new-data";
     expect(ctx).toMatchSnapshot();
   });
 });
