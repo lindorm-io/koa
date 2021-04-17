@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`controllerMiddleware should set and keep references 1`] = `
+Object {
+  "agent": "agent",
+  "cache": "cache",
+  "controller": Object {
+    "data": "data",
+  },
+  "handler": Object {
+    "data": "new-data",
+    "test": Test {
+      "agent": "agent",
+      "cache": "cache",
+      "handler": Object {},
+      "issuer": "issuer",
+      "keystore": "keystore",
+      "logger": "logger",
+      "metadata": "metadata",
+      "metrics": "metrics",
+      "repository": "repository",
+      "support": "support",
+      "token": "token",
+    },
+  },
+  "issuer": "issuer",
+  "keystore": "keystore",
+  "logger": "logger",
+  "metadata": "metadata",
+  "metrics": "metrics",
+  "repository": "repository",
+  "support": "support",
+  "token": "token",
+}
+`;
+
+exports[`controllerMiddleware should set controller on context 1`] = `
+Object {
+  "agent": "agent",
+  "cache": "cache",
+  "controller": Object {
+    "data": "data",
+  },
+  "handler": Object {
+    "test": Test {
+      "agent": "agent",
+      "cache": "cache",
+      "handler": Object {},
+      "issuer": "issuer",
+      "keystore": "keystore",
+      "logger": "logger",
+      "metadata": "metadata",
+      "metrics": "metrics",
+      "repository": "repository",
+      "support": "support",
+      "token": "token",
+    },
+  },
+  "issuer": "issuer",
+  "keystore": "keystore",
+  "logger": "logger",
+  "metadata": "metadata",
+  "metrics": "metrics",
+  "repository": "repository",
+  "support": "support",
+  "token": "token",
+}
+`;

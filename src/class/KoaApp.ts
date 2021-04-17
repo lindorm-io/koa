@@ -5,12 +5,14 @@ import userAgent from "koa-useragent";
 import { IntervalWorker } from "./IntervalWorker";
 import { Logger } from "@lindorm-io/winston";
 import {
+  agentMiddleware,
   bodyCaseSwitchMiddleware,
-  metadataMiddleware,
+  defaultStatusMiddleware,
   errorMiddleware,
+  initContextMiddleware,
+  metadataMiddleware,
   metricsMiddleware,
   sessionLoggerMiddleware,
-  defaultStatusMiddleware,
 } from "../middleware";
 
 export interface IKoaAppOptions {
@@ -39,6 +41,8 @@ export class KoaApp {
       bodyParser(),
       defaultStatusMiddleware,
       bodyCaseSwitchMiddleware,
+      initContextMiddleware,
+      agentMiddleware,
       metadataMiddleware,
       sessionLoggerMiddleware({ logger: this.logger }),
       metricsMiddleware,

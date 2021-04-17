@@ -1,30 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`correlationIdMiddleware should set null if agent data does not exist 1`] = `
-Object {
-  "browser": null,
-  "geoIp": null,
-  "os": null,
-  "platform": null,
-  "source": null,
-  "version": null,
-}
-`;
-
-exports[`correlationIdMiddleware should set user agent data 1`] = `
-Object {
-  "browser": "browser",
-  "geoIp": Object {
-    "geoIp": 1,
-  },
-  "os": "os",
-  "platform": "platform",
-  "source": "source",
-  "version": "version",
-}
-`;
-
-exports[`correlationIdMiddleware should use correlation id from header if it exists 1`] = `
+exports[`metadataMiddleware should use correlation id from header if it exists 1`] = `
 Object {
   "clientEnvironment": "X-Client-Environment",
   "clientId": "X-Client-ID",
@@ -38,7 +14,7 @@ Object {
 }
 `;
 
-exports[`correlationIdMiddleware should use uuid if header does not exist 1`] = `
+exports[`metadataMiddleware should use uuid if header does not exist 1`] = `
 Object {
   "clientEnvironment": null,
   "clientId": null,

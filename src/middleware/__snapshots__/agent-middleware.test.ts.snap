@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`agentMiddleware should set null if agent data does not exist 1`] = `
+Object {
+  "browser": null,
+  "geoIp": null,
+  "os": null,
+  "platform": null,
+  "source": null,
+  "version": null,
+}
+`;
+
+exports[`agentMiddleware should set user agent data 1`] = `
+Object {
+  "browser": "browser",
+  "geoIp": Object {
+    "geoIp": 1,
+  },
+  "os": "os",
+  "platform": "platform",
+  "source": "source",
+  "version": "version",
+}
+`;
