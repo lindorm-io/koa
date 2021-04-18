@@ -4,16 +4,18 @@ import { v1 as uuidv1, v4 as uuidv4 } from "uuid";
 
 export class MetadataHandler extends KoaContextAware {
   getHeaders(): IKoaAppMetadataHeaders {
+    const { metadata } = this.ctx;
+
     return {
-      "X-Client-Environment": this.metadata.clientEnvironment,
-      "X-Client-ID": this.metadata.clientId,
-      "X-Client-Name": this.metadata.clientName,
-      "X-Client-Platform": this.metadata.clientPlatform,
-      "X-Client-Version": this.metadata.clientVersion,
-      "X-Correlation-ID": this.metadata.correlationId || uuidv1(),
-      "X-Device-ID": this.metadata.deviceId,
-      "X-Installation-ID": this.metadata.installationId,
-      "X-Session-ID": this.metadata.sessionId || uuidv4(),
+      "X-Client-Environment": metadata.clientEnvironment,
+      "X-Client-ID": metadata.clientId,
+      "X-Client-Name": metadata.clientName,
+      "X-Client-Platform": metadata.clientPlatform,
+      "X-Client-Version": metadata.clientVersion,
+      "X-Correlation-ID": metadata.correlationId || uuidv1(),
+      "X-Device-ID": metadata.deviceId,
+      "X-Installation-ID": metadata.installationId,
+      "X-Session-ID": metadata.sessionId || uuidv4(),
     };
   }
 }
