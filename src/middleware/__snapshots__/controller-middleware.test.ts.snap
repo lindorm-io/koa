@@ -1,100 +1,52 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`controllerMiddleware should set and keep references 1`] = `
-Object {
-  "agent": "agent",
-  "cache": "cache",
-  "controller": Object {
-    "test": Test {
-      "agent": "agent",
-      "cache": "cache",
-      "handler": Object {
-        "data": "new-data",
-      },
-      "issuer": "issuer",
-      "keystore": "keystore",
-      "logger": "logger",
-      "metadata": "metadata",
-      "metrics": "metrics",
-      "repository": "repository",
-      "token": "token",
-    },
-  },
+Test {
+  "agent": undefined,
+  "cache": undefined,
   "handler": Object {
     "data": "new-data",
   },
-  "issuer": "issuer",
-  "keystore": "keystore",
-  "logger": "logger",
-  "metadata": "metadata",
-  "metrics": "metrics",
-  "repository": "repository",
-  "token": "token",
+  "issuer": undefined,
+  "keystore": undefined,
+  "logger": undefined,
+  "metadata": undefined,
+  "metrics": undefined,
+  "repository": undefined,
+  "token": undefined,
 }
 `;
 
 exports[`controllerMiddleware should set controller on context 1`] = `
-Object {
-  "agent": "agent",
-  "cache": "cache",
-  "controller": Object {
-    "test": Test {
-      "agent": "agent",
-      "cache": "cache",
-      "handler": Object {
-        "data": "data",
-      },
-      "issuer": "issuer",
-      "keystore": "keystore",
-      "logger": "logger",
-      "metadata": "metadata",
-      "metrics": "metrics",
-      "repository": "repository",
-      "token": "token",
-    },
-  },
+Test {
+  "agent": undefined,
+  "cache": undefined,
   "handler": Object {
     "data": "data",
   },
-  "issuer": "issuer",
-  "keystore": "keystore",
-  "logger": "logger",
-  "metadata": "metadata",
-  "metrics": "metrics",
-  "repository": "repository",
-  "token": "token",
+  "issuer": undefined,
+  "keystore": undefined,
+  "logger": undefined,
+  "metadata": undefined,
+  "metrics": undefined,
+  "repository": undefined,
+  "token": undefined,
 }
 `;
 
 exports[`controllerMiddleware should set controller with specific key 1`] = `
-Object {
-  "agent": "agent",
-  "cache": "cache",
-  "controller": Object {
-    "otherKey": Test {
-      "agent": "agent",
-      "cache": "cache",
-      "handler": Object {
-        "data": "data",
-      },
-      "issuer": "issuer",
-      "keystore": "keystore",
-      "logger": "logger",
-      "metadata": "metadata",
-      "metrics": "metrics",
-      "repository": "repository",
-      "token": "token",
-    },
-  },
+Test {
+  "agent": undefined,
+  "cache": undefined,
   "handler": Object {
     "data": "data",
   },
-  "issuer": "issuer",
-  "keystore": "keystore",
-  "logger": "logger",
-  "metadata": "metadata",
-  "metrics": "metrics",
-  "repository": "repository",
-  "token": "token",
+  "issuer": undefined,
+  "keystore": undefined,
+  "logger": undefined,
+  "metadata": undefined,
+  "metrics": undefined,
+  "repository": undefined,
+  "token": undefined,
 }
 `;

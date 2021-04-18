@@ -38,7 +38,9 @@ export interface IKoaAppMetadata {
 export interface IKoaAppContext extends ParameterizedContext<any, IRouterParamContext<any, Record<any, unknown>>> {
   agent: IKoaAppAgent;
   cache: unknown;
+  client: unknown;
   controller: unknown;
+  entity: unknown;
   handler: unknown;
   issuer: unknown;
   keystore: unknown;

@@ -9,34 +9,25 @@ describe("controllerMiddleware", () => {
 
   beforeEach(() => {
     ctx = {
-      agent: "agent",
-      cache: "cache",
       controller: { data: "data" },
       handler: {},
-      issuer: "issuer",
-      keystore: "keystore",
-      logger: "logger",
-      metadata: "metadata",
-      metrics: "metrics",
-      repository: "repository",
-      token: "token",
     };
     next = () => Promise.resolve();
   });
 
   test("should set handler on context", async () => {
     await expect(handlerMiddleware(Test)(ctx, next)).resolves.toBe(undefined);
-    expect(ctx).toMatchSnapshot();
+    expect(ctx.handler.test).toMatchSnapshot();
   });
 
   test("should set and keep references", async () => {
     await expect(handlerMiddleware(Test)(ctx, next)).resolves.toBe(undefined);
     ctx.controller.data = "new-data";
-    expect(ctx).toMatchSnapshot();
+    expect(ctx.handler.test).toMatchSnapshot();
   });
 
   test("should set handler with specific key", async () => {
     await expect(handlerMiddleware(Test, { key: "otherKey" })(ctx, next)).resolves.toBe(undefined);
-    expect(ctx).toMatchSnapshot();
+    expect(ctx.handler.otherKey).toMatchSnapshot();
   });
 });

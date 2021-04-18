@@ -4,6 +4,8 @@ import { Logger } from "@lindorm-io/winston";
 export abstract class KoaContextAware {
   protected agent: IKoaAppAgent;
   protected cache: unknown;
+  protected client: unknown;
+  protected entity: unknown;
   protected handler: unknown;
   protected issuer: unknown;
   protected keystore: unknown;
@@ -16,6 +18,8 @@ export abstract class KoaContextAware {
   constructor(ctx: IKoaAppContext) {
     this.agent = ctx.agent;
     this.cache = ctx.cache;
+    this.client = ctx.cache;
+    this.entity = ctx.cache;
     this.handler = ctx.handler;
     this.issuer = ctx.issuer;
     this.keystore = ctx.keystore;

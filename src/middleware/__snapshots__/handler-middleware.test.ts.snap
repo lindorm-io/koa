@@ -1,94 +1,52 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`controllerMiddleware should set and keep references 1`] = `
-Object {
-  "agent": "agent",
-  "cache": "cache",
-  "controller": Object {
-    "data": "new-data",
-  },
+Test {
+  "agent": undefined,
+  "cache": undefined,
   "handler": Object {
-    "test": Test {
-      "agent": "agent",
-      "cache": "cache",
-      "handler": [Circular],
-      "issuer": "issuer",
-      "keystore": "keystore",
-      "logger": "logger",
-      "metadata": "metadata",
-      "metrics": "metrics",
-      "repository": "repository",
-      "token": "token",
-    },
+    "test": [Circular],
   },
-  "issuer": "issuer",
-  "keystore": "keystore",
-  "logger": "logger",
-  "metadata": "metadata",
-  "metrics": "metrics",
-  "repository": "repository",
-  "token": "token",
+  "issuer": undefined,
+  "keystore": undefined,
+  "logger": undefined,
+  "metadata": undefined,
+  "metrics": undefined,
+  "repository": undefined,
+  "token": undefined,
 }
 `;
 
 exports[`controllerMiddleware should set handler on context 1`] = `
-Object {
-  "agent": "agent",
-  "cache": "cache",
-  "controller": Object {
-    "data": "data",
-  },
+Test {
+  "agent": undefined,
+  "cache": undefined,
   "handler": Object {
-    "test": Test {
-      "agent": "agent",
-      "cache": "cache",
-      "handler": [Circular],
-      "issuer": "issuer",
-      "keystore": "keystore",
-      "logger": "logger",
-      "metadata": "metadata",
-      "metrics": "metrics",
-      "repository": "repository",
-      "token": "token",
-    },
+    "test": [Circular],
   },
-  "issuer": "issuer",
-  "keystore": "keystore",
-  "logger": "logger",
-  "metadata": "metadata",
-  "metrics": "metrics",
-  "repository": "repository",
-  "token": "token",
+  "issuer": undefined,
+  "keystore": undefined,
+  "logger": undefined,
+  "metadata": undefined,
+  "metrics": undefined,
+  "repository": undefined,
+  "token": undefined,
 }
 `;
 
 exports[`controllerMiddleware should set handler with specific key 1`] = `
-Object {
-  "agent": "agent",
-  "cache": "cache",
-  "controller": Object {
-    "data": "data",
-  },
+Test {
+  "agent": undefined,
+  "cache": undefined,
   "handler": Object {
-    "otherKey": Test {
-      "agent": "agent",
-      "cache": "cache",
-      "handler": [Circular],
-      "issuer": "issuer",
-      "keystore": "keystore",
-      "logger": "logger",
-      "metadata": "metadata",
-      "metrics": "metrics",
-      "repository": "repository",
-      "token": "token",
-    },
+    "otherKey": [Circular],
   },
-  "issuer": "issuer",
-  "keystore": "keystore",
-  "logger": "logger",
-  "metadata": "metadata",
-  "metrics": "metrics",
-  "repository": "repository",
-  "token": "token",
+  "issuer": undefined,
+  "keystore": undefined,
+  "logger": undefined,
+  "metadata": undefined,
+  "metrics": undefined,
+  "repository": undefined,
+  "token": undefined,
 }
 `;
