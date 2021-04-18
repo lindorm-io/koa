@@ -18,8 +18,8 @@ export abstract class KoaContextAware {
   constructor(ctx: IKoaAppContext) {
     this.agent = ctx.agent;
     this.cache = ctx.cache;
-    this.client = ctx.cache;
-    this.entity = ctx.cache;
+    this.client = ctx.client;
+    this.entity = ctx.entity;
     this.handler = ctx.handler;
     this.issuer = ctx.issuer;
     this.keystore = ctx.keystore;
