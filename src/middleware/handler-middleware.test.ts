@@ -37,7 +37,7 @@ describe("controllerMiddleware", () => {
   });
 
   test("should set handler with specific key", async () => {
-    await expect(handlerMiddleware(Test)(ctx, next)).resolves.toBe(undefined);
+    await expect(handlerMiddleware(Test, { key: "otherKey" })(ctx, next)).resolves.toBe(undefined);
     expect(ctx).toMatchSnapshot();
   });
 });

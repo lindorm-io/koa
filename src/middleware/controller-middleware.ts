@@ -3,16 +3,20 @@ import { KoaContextAware } from "../class";
 import { Middleware, Next } from "koa";
 import { camelCase } from "lodash";
 
-export const controllerMiddleware = (Controller: typeof KoaContextAware, key?: string): Middleware => async (
-  ctx: IKoaAppContext,
-  next: Next,
-): Promise<void> => {
+interface ControllerMiddlewareOptions {
+  key?: string;
+}
+
+export const controllerMiddleware = (
+  Controller: typeof KoaContextAware,
+  options?: ControllerMiddlewareOptions,
+): Middleware => async (ctx: IKoaAppContext, next: Next): Promise<void> => {
   /*
    * Ignoring TS here since KoaContextAware needs to be abstract
    * to ensure that all input at least attempts to be unique
    */
   // @ts-ignore
-  ctx.controller[camelCase(key || Controller.name)] = new Controller(ctx);
+  ctx.controller[camelCase(options?.key || Controller.name)] = new Controller(ctx);
 
   await next();
 };

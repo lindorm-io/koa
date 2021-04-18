@@ -74,7 +74,7 @@ Object {
     "data": "data",
   },
   "handler": Object {
-    "test": Test {
+    "otherKey": Test {
       "agent": "agent",
       "cache": "cache",
       "handler": [Circular],
