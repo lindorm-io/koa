@@ -19,7 +19,6 @@ describe("controllerMiddleware", () => {
       metadata: "metadata",
       metrics: "metrics",
       repository: "repository",
-      support: "support",
       token: "token",
     };
     next = () => Promise.resolve();

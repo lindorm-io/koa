@@ -3,16 +3,15 @@ import { Logger } from "@lindorm-io/winston";
 
 export abstract class KoaContextAware {
   protected agent: IKoaAppAgent;
-  protected cache: Record<string, unknown>;
-  protected handler: Record<string, unknown>;
-  protected issuer: Record<string, unknown>;
-  protected keystore: Record<string, unknown>;
+  protected cache: unknown;
+  protected handler: unknown;
+  protected issuer: unknown;
+  protected keystore: unknown;
   protected logger: Logger;
   protected metadata: IKoaAppMetadata;
   protected metrics: Record<string, number>;
-  protected repository: Record<string, unknown>;
-  protected support: Record<string, unknown>;
-  protected token: Record<string, unknown>;
+  protected repository: unknown;
+  protected token: unknown;
 
   constructor(ctx: IKoaAppContext) {
     this.agent = ctx.agent;
@@ -24,7 +23,6 @@ export abstract class KoaContextAware {
     this.metadata = ctx.metadata;
     this.metrics = ctx.metrics;
     this.repository = ctx.repository;
-    this.support = ctx.support;
     this.token = ctx.token;
   }
 }

@@ -1,5 +1,4 @@
 import { IRouterParamContext } from "koa-router";
-import { KoaContextAware } from "../class";
 import { Logger } from "@lindorm-io/winston";
 import { ParameterizedContext } from "koa";
 
@@ -38,15 +37,14 @@ export interface IKoaAppMetadata {
 
 export interface IKoaAppContext extends ParameterizedContext<any, IRouterParamContext<any, Record<any, unknown>>> {
   agent: IKoaAppAgent;
-  cache: Record<string, unknown>;
-  controller: Record<string, KoaContextAware>;
-  handler: Record<string, KoaContextAware>;
-  issuer: Record<string, unknown>;
-  keystore: Record<string, unknown>;
+  cache: unknown;
+  controller: unknown;
+  handler: unknown;
+  issuer: unknown;
+  keystore: unknown;
   logger: Logger;
   metadata: IKoaAppMetadata;
   metrics: Record<string, number>;
-  repository: Record<string, unknown>;
-  support: Record<string, unknown>;
-  token: Record<string, unknown>;
+  repository: unknown;
+  token: unknown;
 }

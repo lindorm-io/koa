@@ -9,7 +9,6 @@ export const initContextMiddleware: Middleware = async (ctx: IKoaAppContext, nex
   ctx.keystore = {};
   ctx.metrics = {};
   ctx.repository = {};
-  ctx.support = {};
   ctx.token = {};
 
   await next();
