@@ -1,4 +1,4 @@
-import { IKoaAppContext } from "../typing";
+import { IKoaAppContext } from "../../typing";
 import { Middleware, Next } from "koa";
 import { v1 as uuidv1, v4 as uuidv4 } from "uuid";
 

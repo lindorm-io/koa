@@ -1,4 +1,4 @@
-import { IKoaAppContext } from "../typing";
+import { IKoaAppContext } from "../../typing";
 import { Middleware, Next } from "koa";
 
 interface IKoaMetadataMiddleware extends IKoaAppContext {

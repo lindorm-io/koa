@@ -1,4 +1,4 @@
-import { IKoaAppContext } from "../typing";
+import { IKoaAppContext } from "../../typing";
 import { Logger } from "@lindorm-io/winston";
 import { Middleware, Next } from "koa";
 

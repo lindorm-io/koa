@@ -1,4 +1,4 @@
-import { KoaContextAware } from "../class";
+import { KoaContextAware } from "../../class";
 import { handlerMiddleware } from "./handler-middleware";
 
 class Test extends KoaContextAware {}

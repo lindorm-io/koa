@@ -1,4 +1,4 @@
-import { IKoaAppContext } from "../typing";
+import { IKoaAppContext } from "../../typing";
 import { Middleware, Next } from "koa";
 
 export const initContextMiddleware: Middleware = async (ctx: IKoaAppContext, next: Next): Promise<void> => {

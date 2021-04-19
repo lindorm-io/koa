@@ -1,4 +1,4 @@
-import { KoaContextAware } from "../class";
+import { KoaContextAware } from "../../class";
 import { controllerMiddleware } from "./controller-middleware";
 
 class Test extends KoaContextAware {}

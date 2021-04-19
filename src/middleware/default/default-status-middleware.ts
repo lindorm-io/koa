@@ -1,5 +1,5 @@
 import { HttpStatus } from "@lindorm-io/core";
-import { IKoaAppContext } from "../typing";
+import { IKoaAppContext } from "../../typing";
 import { Middleware, Next } from "koa";
 
 export const defaultStatusMiddleware: Middleware = async (ctx: IKoaAppContext, next: Next): Promise<void> => {

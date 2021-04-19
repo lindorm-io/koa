@@ -1,4 +1,4 @@
-import { IKoaAppContext } from "../typing";
+import { IKoaAppContext } from "../../typing";
 import { Next } from "koa";
 
 export const metricsMiddleware = async (ctx: IKoaAppContext, next: Next): Promise<void> => {

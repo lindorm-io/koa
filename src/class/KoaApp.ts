@@ -13,7 +13,7 @@ import {
   metadataMiddleware,
   metricsMiddleware,
   sessionLoggerMiddleware,
-} from "../middleware";
+} from "../middleware/default";
 
 export interface IKoaAppOptions {
   logger: Logger;
