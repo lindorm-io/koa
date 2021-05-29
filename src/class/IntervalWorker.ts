@@ -16,12 +16,12 @@ enum IntervalWorkerEvent {
 }
 
 export class IntervalWorker extends EventEmitter {
-  private callback: () => Promise<any>;
-  private interval: Timeout;
-  private logger: Logger;
-  private time: number;
+  private readonly callback: () => Promise<any>;
+  private interval: Timeout | undefined;
+  private readonly logger: Logger;
+  private readonly time: number;
 
-  constructor(options: IIntervalWorkerOptions) {
+  public constructor(options: IIntervalWorkerOptions) {
     super();
 
     this.callback = options.callback;
@@ -33,6 +33,7 @@ export class IntervalWorker extends EventEmitter {
 
   public trigger(): void {
     this.logger.info("worker trigger");
+
     this.callback()
       .then((result: any) => {
         this.logger.debug("worker success", { result });
@@ -47,13 +48,19 @@ export class IntervalWorker extends EventEmitter {
   public start(): void {
     this.logger.info("worker start", { intervalMs: this.time });
     this.interval = setInterval(() => this.trigger(), this.time);
+
     super.emit(IntervalWorkerEvent.START);
   }
 
   public stop(): void {
     this.logger.info("worker stop");
-    clearInterval(this.interval);
-    this.interval = undefined;
+
+    if (this.interval) {
+      clearInterval(this.interval);
+
+      this.interval = undefined;
+    }
+
     super.emit(IntervalWorkerEvent.STOP);
   }
 

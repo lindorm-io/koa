@@ -3,7 +3,7 @@ import { IKoaAppMetadataHeaders } from "../typing";
 import { v1 as uuidv1, v4 as uuidv4 } from "uuid";
 
 export class MetadataHandler extends KoaContextAware {
-  getHeaders(): IKoaAppMetadataHeaders {
+  public getHeaders(): IKoaAppMetadataHeaders {
     const { metadata } = this.ctx;
 
     return {

@@ -12,27 +12,27 @@ export interface IKoaAppAgent {
 }
 
 export interface IKoaAppMetadataHeaders {
-  "X-Client-Environment": string;
-  "X-Client-ID": string;
-  "X-Client-Name": string;
-  "X-Client-Platform": string;
-  "X-Client-Version": string;
-  "X-Correlation-ID": string;
-  "X-Device-ID": string;
-  "X-Installation-ID": string;
-  "X-Session-ID": string;
+  "X-Client-Environment": string | null;
+  "X-Client-ID": string | null;
+  "X-Client-Name": string | null;
+  "X-Client-Platform": string | null;
+  "X-Client-Version": string | null;
+  "X-Correlation-ID": string | null;
+  "X-Device-ID": string | null;
+  "X-Installation-ID": string | null;
+  "X-Session-ID": string | null;
 }
 
 export interface IKoaAppMetadata {
-  clientEnvironment: string;
-  clientId: string;
-  clientName: string;
-  clientPlatform: string;
-  clientVersion: string;
-  correlationId: string;
-  deviceId: string;
-  installationId: string;
-  sessionId: string;
+  clientEnvironment: string | null;
+  clientId: string | null;
+  clientName: string | null;
+  clientPlatform: string | null;
+  clientVersion: string | null;
+  correlationId: string | null;
+  deviceId: string | null;
+  installationId: string | null;
+  sessionId: string | null;
 }
 
 export interface IKoaAppContext extends ParameterizedContext<any, IRouterParamContext<any, Record<any, unknown>>> {

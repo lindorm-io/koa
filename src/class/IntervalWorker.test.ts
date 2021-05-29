@@ -1,4 +1,5 @@
 import { IntervalWorker } from "./IntervalWorker";
+import { logger } from "../test";
 
 const sleep = (time: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, time));
 
@@ -6,22 +7,19 @@ describe("IntervalWorker.ts", () => {
   let eventResult: any;
   let worker: IntervalWorker;
 
-  let mockLogger: any;
   let callback: any;
 
   beforeEach(() => {
     eventResult = {};
-    mockLogger = {
-      createChildLogger: () => ({
-        debug: jest.fn(),
-        info: jest.fn(),
-        error: jest.fn(),
-      }),
-    };
-    callback = jest.fn().mockResolvedValue("mock-success");
+    callback = jest.fn(
+      () =>
+        new Promise((resolve) => {
+          resolve("mock-success");
+        }),
+    );
 
     worker = new IntervalWorker({
-      logger: mockLogger,
+      logger,
       callback,
       time: 5,
     });
@@ -44,6 +42,7 @@ describe("IntervalWorker.ts", () => {
   test("should run callback", async () => {
     worker.trigger();
     await sleep(10);
+    worker.stop();
 
     expect(callback).toHaveBeenCalled();
     expect(eventResult).toStrictEqual({
@@ -55,6 +54,7 @@ describe("IntervalWorker.ts", () => {
   test("should start and eventually run callback", async () => {
     worker.start();
     await sleep(10);
+    worker.stop();
 
     expect(callback).toHaveBeenCalled();
     expect(eventResult).toStrictEqual({
@@ -66,6 +66,7 @@ describe("IntervalWorker.ts", () => {
 
   test("should not have run callback", async () => {
     worker.start();
+    worker.stop();
 
     expect(callback).not.toHaveBeenCalled();
   });

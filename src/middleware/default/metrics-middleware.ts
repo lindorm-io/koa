@@ -1,7 +1,7 @@
+import { DefaultState, Middleware } from "koa";
 import { IKoaAppContext } from "../../typing";
-import { Next } from "koa";
 
-export const metricsMiddleware = async (ctx: IKoaAppContext, next: Next): Promise<void> => {
+export const metricsMiddleware: Middleware<DefaultState, IKoaAppContext> = async (ctx, next): Promise<void> => {
   const start = Date.now();
 
   try {

@@ -1,4 +1,4 @@
-import Koa, { Middleware } from "koa";
+import Koa, { DefaultState, Middleware } from "koa";
 import Router from "koa-router";
 import bodyParser from "koa-bodyparser";
 import userAgent from "koa-useragent";
@@ -21,16 +21,16 @@ export interface IKoaAppOptions {
 }
 
 export class KoaApp {
-  readonly app: Koa;
-  readonly router: Router;
+  public readonly app: Koa;
+  public readonly router: Router;
 
   private loaded: boolean;
-  private logger: Logger;
-  private middleware: Array<Middleware>;
-  private port: number;
-  private workers: Array<IntervalWorker>;
+  private readonly logger: Logger;
+  private readonly middleware: Array<Middleware<DefaultState, any>>;
+  private readonly port: number;
+  private readonly workers: Array<IntervalWorker>;
 
-  constructor(options: IKoaAppOptions) {
+  public constructor(options: IKoaAppOptions) {
     this.app = new Koa();
     this.router = new Router();
 

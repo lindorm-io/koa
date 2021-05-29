@@ -1,7 +1,8 @@
-import { Context, Middleware, Next } from "koa";
+import { DefaultState, Middleware } from "koa";
 import { HttpStatus } from "@lindorm-io/core";
+import { IKoaAppContext } from "../../typing";
 
-export const errorMiddleware: Middleware = async (ctx: Context, next: Next): Promise<void> => {
+export const errorMiddleware: Middleware<DefaultState, IKoaAppContext> = async (ctx, next): Promise<void> => {
   try {
     await next();
   } catch (err) {
