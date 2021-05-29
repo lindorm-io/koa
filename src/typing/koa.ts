@@ -1,1 +1,1 @@
-export type { Next, Middleware } from "koa";
+export type { DefaultState, Middleware, Next } from "koa";

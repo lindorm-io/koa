@@ -14,6 +14,20 @@ Object {
 }
 `;
 
+exports[`metadataMiddleware should use correlation id from header if it exists 2`] = `
+Object {
+  "X-Client-Environment": "X-Client-Environment",
+  "X-Client-ID": "X-Client-ID",
+  "X-Client-Name": "X-Client-Name",
+  "X-Client-Platform": "X-Client-Platform",
+  "X-Client-Version": "X-Client-Version",
+  "X-Correlation-ID": "X-Correlation-ID",
+  "X-Device-ID": "X-Device-ID",
+  "X-Installation-ID": "X-Installation-ID",
+  "X-Session-ID": "X-Session-ID",
+}
+`;
+
 exports[`metadataMiddleware should use uuid if header does not exist 1`] = `
 Object {
   "clientEnvironment": null,
@@ -25,5 +39,19 @@ Object {
   "deviceId": null,
   "installationId": null,
   "sessionId": "a26dad28-e854-447d-bce6-5c685cddfea8",
+}
+`;
+
+exports[`metadataMiddleware should use uuid if header does not exist 2`] = `
+Object {
+  "X-Client-Environment": null,
+  "X-Client-ID": null,
+  "X-Client-Name": null,
+  "X-Client-Platform": null,
+  "X-Client-Version": null,
+  "X-Correlation-ID": "0dacd3cc-035e-4968-881e-1fc30d496121",
+  "X-Device-ID": null,
+  "X-Installation-ID": null,
+  "X-Session-ID": "a26dad28-e854-447d-bce6-5c685cddfea8",
 }
 `;

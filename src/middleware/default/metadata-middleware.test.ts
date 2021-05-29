@@ -19,6 +19,7 @@ describe("metadataMiddleware", () => {
   test("should use correlation id from header if it exists", async () => {
     await expect(metadataMiddleware(ctx, next)).resolves.toBe(undefined);
     expect(ctx.metadata).toMatchSnapshot();
+    expect(ctx.metadataHeaders).toMatchSnapshot();
   });
 
   test("should use uuid if header does not exist", async () => {
@@ -26,5 +27,6 @@ describe("metadataMiddleware", () => {
 
     await expect(metadataMiddleware(ctx, next)).resolves.toBe(undefined);
     expect(ctx.metadata).toMatchSnapshot();
+    expect(ctx.metadataHeaders).toMatchSnapshot();
   });
 });

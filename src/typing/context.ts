@@ -46,6 +46,7 @@ export interface IKoaAppContext extends ParameterizedContext<any, IRouterParamCo
   keystore: unknown;
   logger: Logger;
   metadata: IKoaAppMetadata;
+  metadataHeaders: IKoaAppMetadataHeaders;
   metrics: Record<string, number>;
   repository: unknown;
   token: unknown;
