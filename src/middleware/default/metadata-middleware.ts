@@ -1,8 +1,7 @@
-import { DefaultState, Middleware } from "koa";
-import { IKoaAppContext } from "../../typing";
+import type { KoaContext, Middleware } from "../../typing";
 import { v1 as uuidv1, v4 as uuidv4 } from "uuid";
 
-export const metadataMiddleware: Middleware<DefaultState, IKoaAppContext> = async (ctx, next): Promise<void> => {
+export const metadataMiddleware: Middleware<KoaContext> = async (ctx, next): Promise<void> => {
   ctx.metadata = {
     clientEnvironment: ctx.get("X-Client-Environment") || null,
     clientId: ctx.get("X-Client-ID") || null,

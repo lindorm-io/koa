@@ -1,13 +1,12 @@
-import { DefaultState, Middleware } from "koa";
-import { IKoaAppContext } from "../../typing";
+import type { KoaContext, Middleware } from "../../typing";
 import { Logger } from "@lindorm-io/winston";
 
-export interface ISessionLoggerMiddlewareOptions {
+interface Options {
   logger: Logger;
 }
 
 export const sessionLoggerMiddleware =
-  (options: ISessionLoggerMiddlewareOptions): Middleware<DefaultState, IKoaAppContext> =>
+  (options: Options): Middleware<KoaContext> =>
   async (ctx, next): Promise<void> => {
     ctx.logger = options.logger.createSessionLogger({ correlationId: ctx.metadata.correlationId });
 

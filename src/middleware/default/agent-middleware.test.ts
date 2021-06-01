@@ -19,14 +19,14 @@ describe("agentMiddleware", () => {
   });
 
   test("should set user agent data", async () => {
-    await expect(agentMiddleware(ctx, next)).resolves.toBe(undefined);
+    await expect(agentMiddleware(ctx, next)).resolves.toBeUndefined();
     expect(ctx.agent).toMatchSnapshot();
   });
 
   test("should set null if agent data does not exist", async () => {
     ctx.userAgent = undefined;
 
-    await expect(agentMiddleware(ctx, next)).resolves.toBe(undefined);
+    await expect(agentMiddleware(ctx, next)).resolves.toBeUndefined();
     expect(ctx.agent).toMatchSnapshot();
   });
 });

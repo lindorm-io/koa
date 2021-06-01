@@ -2,7 +2,7 @@ import { IRouterParamContext } from "koa-router";
 import { Logger } from "@lindorm-io/winston";
 import { ParameterizedContext } from "koa";
 
-export interface IKoaAppAgent {
+interface KoaAgent {
   browser: string;
   geoIp: Record<string, unknown>;
   os: string;
@@ -11,7 +11,7 @@ export interface IKoaAppAgent {
   version: string;
 }
 
-export interface IKoaAppMetadataHeaders {
+interface KoaMetadataHeaders {
   "X-Client-Environment": string | null;
   "X-Client-ID": string | null;
   "X-Client-Name": string | null;
@@ -23,7 +23,7 @@ export interface IKoaAppMetadataHeaders {
   "X-Session-ID": string | null;
 }
 
-export interface IKoaAppMetadata {
+interface KoaMetadata {
   clientEnvironment: string | null;
   clientId: string | null;
   clientName: string | null;
@@ -35,8 +35,8 @@ export interface IKoaAppMetadata {
   sessionId: string | null;
 }
 
-export interface IKoaAppContext extends ParameterizedContext<any, IRouterParamContext<any, Record<any, unknown>>> {
-  agent: IKoaAppAgent;
+export interface KoaContext extends ParameterizedContext<any, IRouterParamContext<any, Record<any, unknown>>> {
+  agent: KoaAgent;
   axios: unknown;
   cache: unknown;
   client: unknown;
@@ -46,8 +46,8 @@ export interface IKoaAppContext extends ParameterizedContext<any, IRouterParamCo
   issuer: unknown;
   keystore: unknown;
   logger: Logger;
-  metadata: IKoaAppMetadata;
-  metadataHeaders: IKoaAppMetadataHeaders;
+  metadata: KoaMetadata;
+  metadataHeaders: KoaMetadataHeaders;
   metrics: Record<string, number>;
   repository: unknown;
   token: unknown;

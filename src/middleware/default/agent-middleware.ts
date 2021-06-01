@@ -1,11 +1,10 @@
-import { DefaultState, Middleware } from "koa";
-import { IKoaAppContext } from "../../typing";
+import type { KoaContext, Middleware } from "../../typing";
 
-interface IKoaAgentContext extends IKoaAppContext {
+interface AgentContext extends KoaContext {
   userAgent: Record<string, any>;
 }
 
-export const agentMiddleware: Middleware<DefaultState, IKoaAgentContext> = async (ctx, next): Promise<void> => {
+export const agentMiddleware: Middleware<AgentContext> = async (ctx, next): Promise<void> => {
   ctx.agent = {
     browser: ctx.userAgent?.browser || null,
     geoIp: ctx.userAgent?.geoIp || null,

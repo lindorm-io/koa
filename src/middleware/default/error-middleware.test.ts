@@ -25,7 +25,7 @@ describe("errorMiddleware", () => {
   });
 
   test("should resolve with error data", async () => {
-    await expect(errorMiddleware(ctx, next)).resolves.toBe(undefined);
+    await expect(errorMiddleware(ctx, next)).resolves.toBeUndefined();
 
     expect(ctx.app.emit).toHaveBeenCalled();
     expect(ctx.status).toBe(300);
@@ -35,7 +35,7 @@ describe("errorMiddleware", () => {
   test("should resolve with default error data", async () => {
     next = () => Promise.reject(new APIError("message"));
 
-    await expect(errorMiddleware(ctx, next)).resolves.toBe(undefined);
+    await expect(errorMiddleware(ctx, next)).resolves.toBeUndefined();
 
     expect(ctx.app.emit).toHaveBeenCalled();
     expect(ctx.status).toBe(500);

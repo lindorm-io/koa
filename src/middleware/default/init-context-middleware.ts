@@ -1,7 +1,6 @@
-import { IKoaAppContext } from "../../typing";
-import { DefaultState, Middleware } from "koa";
+import type { KoaContext, Middleware } from "../../typing";
 
-export const initContextMiddleware: Middleware<DefaultState, IKoaAppContext> = async (ctx, next): Promise<void> => {
+export const initContextMiddleware: Middleware<KoaContext> = async (ctx, next): Promise<void> => {
   ctx.cache = {};
   ctx.client = {};
   ctx.controller = {};

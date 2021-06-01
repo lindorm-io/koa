@@ -1,14 +1,13 @@
-import { IKoaAppContext } from "../../typing";
+import type { KoaContext, Middleware } from "../../typing";
 import { KoaContextAware } from "../../class";
-import { DefaultState, Middleware } from "koa";
 import { camelCase } from "lodash";
 
-interface HandlerMiddlewareOptions {
+interface Options {
   key?: string;
 }
 
 export const handlerMiddleware =
-  (Handler: typeof KoaContextAware, options?: HandlerMiddlewareOptions): Middleware<DefaultState, IKoaAppContext> =>
+  (Handler: typeof KoaContextAware, options?: Options): Middleware<KoaContext> =>
   async (ctx, next): Promise<void> => {
     /*
      * Ignoring TS here since KoaContextAware needs to be abstract

@@ -17,7 +17,7 @@ describe("metadataMiddleware", () => {
   });
 
   test("should use correlation id from header if it exists", async () => {
-    await expect(metadataMiddleware(ctx, next)).resolves.toBe(undefined);
+    await expect(metadataMiddleware(ctx, next)).resolves.toBeUndefined();
     expect(ctx.metadata).toMatchSnapshot();
     expect(ctx.metadataHeaders).toMatchSnapshot();
   });
@@ -25,7 +25,7 @@ describe("metadataMiddleware", () => {
   test("should use uuid if header does not exist", async () => {
     ctx.get = jest.fn(() => undefined);
 
-    await expect(metadataMiddleware(ctx, next)).resolves.toBe(undefined);
+    await expect(metadataMiddleware(ctx, next)).resolves.toBeUndefined();
     expect(ctx.metadata).toMatchSnapshot();
     expect(ctx.metadataHeaders).toMatchSnapshot();
   });
