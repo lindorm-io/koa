@@ -1,7 +1,7 @@
 import MockDate from "mockdate";
 import { bodyCaseSwitchMiddleware } from "./body-case-switch-middleware";
 
-MockDate.set("2020-01-01 08:00:00.000");
+MockDate.set("2020-01-01T08:00:00.000Z");
 
 describe("bodyCaseSwitchMiddleware", () => {
   const array = ["array"];
