@@ -1,6 +1,6 @@
-import { IRouterParamContext } from "koa-router";
 import { Logger } from "@lindorm-io/winston";
-import { ParameterizedContext } from "koa";
+import { Request } from "koa";
+import { RouterContext } from "koa-router";
 
 interface KoaAgent {
   browser: string;
@@ -35,12 +35,13 @@ interface KoaMetadata {
   sessionId: string | null;
 }
 
-type StateT = any;
-type CustomT = Record<any, any>;
-type ContextT = IRouterParamContext<StateT, CustomT>;
-type ResponseBodyT = Record<string, any>;
+type DefaultBody = Record<string, any>;
 
-export interface KoaContext<Body = ResponseBodyT> extends ParameterizedContext<StateT, ContextT, Body> {
+interface KoaRequest<Body extends DefaultBody> extends Request {
+  body: Body;
+}
+
+export interface KoaContext<Body extends DefaultBody = DefaultBody> extends RouterContext {
   agent: KoaAgent;
   axios: unknown;
   cache: unknown;
@@ -55,5 +56,6 @@ export interface KoaContext<Body = ResponseBodyT> extends ParameterizedContext<S
   metadataHeaders: KoaMetadataHeaders;
   metrics: Record<string, number>;
   repository: unknown;
+  request: KoaRequest<Body>;
   token: unknown;
 }

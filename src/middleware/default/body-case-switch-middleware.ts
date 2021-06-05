@@ -1,4 +1,4 @@
-import type { KoaContext, Middleware } from "../../typing";
+import { KoaContext, Middleware } from "../../typing";
 import { camelKeys, snakeKeys } from "@lindorm-io/core";
 
 export const bodyCaseSwitchMiddleware: Middleware<KoaContext> = async (ctx, next): Promise<void> => {
