@@ -5,6 +5,8 @@ export const initContextMiddleware: Middleware<KoaContext> = async (ctx, next): 
   ctx.controller = {};
   ctx.entity = {};
   ctx.handler = {};
+  ctx.io = {};
+  ctx.jwt = {};
   ctx.metrics = {};
   ctx.token = {};
 

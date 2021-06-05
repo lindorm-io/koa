@@ -47,6 +47,8 @@ export interface KoaContext<Body extends DefaultBody = DefaultBody> extends Rout
   controller: unknown;
   entity: unknown;
   handler: unknown;
+  io: unknown;
+  jwt: unknown;
   logger: Logger;
   metadata: KoaMetadata;
   metadataHeaders: KoaMetadataHeaders;
