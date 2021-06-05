@@ -44,16 +44,19 @@ interface KoaRequest<Body extends DefaultBody> extends Request {
 
 export interface KoaContext<Body extends DefaultBody = DefaultBody> extends RouterContext {
   agent: KoaAgent;
+  axios: unknown;
+  cache: unknown;
   client: unknown;
   controller: unknown;
   entity: unknown;
   handler: unknown;
-  io: unknown;
   jwt: unknown;
+  keystore: unknown;
   logger: Logger;
   metadata: KoaMetadata;
   metadataHeaders: KoaMetadataHeaders;
   metrics: Record<string, number>;
+  repository: unknown;
   request: KoaRequest<Body>;
   token: unknown;
 
