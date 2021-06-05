@@ -1,9 +1,10 @@
-import Koa, { DefaultState, Middleware } from "koa";
+import Koa from "koa";
 import Router from "koa-router";
 import bodyParser from "koa-bodyparser";
 import userAgent from "koa-useragent";
 import { IntervalWorker } from "./IntervalWorker";
 import { Logger } from "@lindorm-io/winston";
+import { Middleware } from "../typing";
 import {
   agentMiddleware,
   bodyCaseSwitchMiddleware,
@@ -27,7 +28,7 @@ export class KoaApp {
 
   private loaded: boolean;
   private readonly logger: Logger;
-  private readonly middleware: Array<Middleware<DefaultState, any>>;
+  private readonly middleware: Array<Middleware<any>>;
   private readonly port: number;
   private readonly workers: Array<IntervalWorker>;
 
@@ -62,7 +63,7 @@ export class KoaApp {
     return this.app.callback();
   }
 
-  public addMiddleware(middleware: Middleware): void {
+  public addMiddleware(middleware: Middleware<any>): void {
     this.middleware.push(middleware);
   }
 
