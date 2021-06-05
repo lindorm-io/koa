@@ -1,4 +1,4 @@
-import type { KoaContext } from "../typing";
+import { KoaContext } from "../typing";
 import { Logger } from "@lindorm-io/winston";
 
 export abstract class KoaContextAware<Context extends KoaContext> {

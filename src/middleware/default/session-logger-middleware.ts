@@ -1,4 +1,4 @@
-import type { KoaContext, Middleware } from "../../typing";
+import { KoaContext, Middleware } from "../../typing";
 import { Logger } from "@lindorm-io/winston";
 
 interface Options {

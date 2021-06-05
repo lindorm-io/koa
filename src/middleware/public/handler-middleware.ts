@@ -1,4 +1,4 @@
-import type { KoaContext, Middleware } from "../../typing";
+import { KoaContext, Middleware } from "../../typing";
 import { KoaContextAware } from "../../class";
 import { camelCase } from "lodash";
 

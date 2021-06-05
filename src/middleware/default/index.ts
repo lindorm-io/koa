@@ -6,3 +6,4 @@ export * from "./init-context-middleware";
 export * from "./metadata-middleware";
 export * from "./metrics-middleware";
 export * from "./session-logger-middleware";
+export * from "./util-context-middleware";

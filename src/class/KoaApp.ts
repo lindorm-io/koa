@@ -13,6 +13,7 @@ import {
   metadataMiddleware,
   metricsMiddleware,
   sessionLoggerMiddleware,
+  utilContextMiddleware,
 } from "../middleware/default";
 
 export interface IKoaAppOptions {
@@ -47,6 +48,7 @@ export class KoaApp {
       sessionLoggerMiddleware({ logger: this.logger }),
       metricsMiddleware,
       errorMiddleware,
+      utilContextMiddleware,
     ];
     this.port = options.port;
     this.workers = [];

@@ -1,4 +1,4 @@
-import { getAuthorizationHeader } from "./authorization-header";
+import { getAuthorization } from "./authorization-header";
 import {
   InvalidAuthorizationHeaderLengthError,
   InvalidAuthorizationHeaderTypeError,
@@ -6,34 +6,51 @@ import {
 } from "../error";
 
 describe("authorization-header.ts", () => {
+  let ctx: any;
+
+  beforeEach(() => {
+    ctx = {
+      get: () => null,
+    };
+  });
+
   test("should return an object with Basic type and value", () => {
-    expect(getAuthorizationHeader("Basic mock-value-string")).toStrictEqual({
+    ctx.get = () => "Basic base64";
+
+    expect(getAuthorization(ctx)()).toStrictEqual({
       type: "Basic",
-      value: "mock-value-string",
+      value: "base64",
     });
   });
 
   test("should return an object with Bearer type and value", () => {
-    expect(getAuthorizationHeader("Bearer mock-value-string")).toStrictEqual({
+    ctx.get = () => "Bearer jwt.jwt.jwt";
+
+    expect(getAuthorization(ctx)()).toStrictEqual({
       type: "Bearer",
-      value: "mock-value-string",
+      value: "jwt.jwt.jwt",
     });
   });
 
   test("should throw an error when header is unavailable", () => {
-    // @ts-ignore
-    expect(() => getAuthorizationHeader(null)).toThrow(expect.any(MissingAuthorizationHeaderError));
+    expect(() => getAuthorization(ctx)()).toThrow(expect.any(MissingAuthorizationHeaderError));
   });
 
   test("should throw an error when header is too short", () => {
-    expect(() => getAuthorizationHeader("one")).toThrow(expect.any(InvalidAuthorizationHeaderLengthError));
+    ctx.get = () => "one";
+
+    expect(() => getAuthorization(ctx)()).toThrow(expect.any(InvalidAuthorizationHeaderLengthError));
   });
 
   test("should throw an error when header is too long", () => {
-    expect(() => getAuthorizationHeader("one two three")).toThrow(expect.any(InvalidAuthorizationHeaderLengthError));
+    ctx.get = () => "one two three";
+
+    expect(() => getAuthorization(ctx)()).toThrow(expect.any(InvalidAuthorizationHeaderLengthError));
   });
 
   test("should throw an error when header type is unexpected", () => {
-    expect(() => getAuthorizationHeader("one two")).toThrow(expect.any(InvalidAuthorizationHeaderTypeError));
+    ctx.get = () => "one two";
+
+    expect(() => getAuthorization(ctx)()).toThrow(expect.any(InvalidAuthorizationHeaderTypeError));
   });
 });

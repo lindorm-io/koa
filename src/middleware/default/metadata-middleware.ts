@@ -1,4 +1,4 @@
-import type { KoaContext, Middleware } from "../../typing";
+import { KoaContext, Middleware } from "../../typing";
 import { v1 as uuidv1, v4 as uuidv4 } from "uuid";
 
 export const metadataMiddleware: Middleware<KoaContext> = async (ctx, next): Promise<void> => {

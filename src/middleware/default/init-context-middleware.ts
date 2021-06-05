@@ -1,4 +1,4 @@
-import type { KoaContext, Middleware } from "../../typing";
+import { KoaContext, Middleware } from "../../typing";
 
 export const initContextMiddleware: Middleware<KoaContext> = async (ctx, next): Promise<void> => {
   ctx.client = {};

@@ -3,13 +3,16 @@ import {
   InvalidAuthorizationHeaderTypeError,
   MissingAuthorizationHeaderError,
 } from "../error";
+import { KoaContext } from "../typing";
 
-interface AuthorizationHeaderData {
+export interface AuthorizationHeader {
   type: string;
   value: string;
 }
 
-export const getAuthorizationHeader = (header: string): AuthorizationHeaderData => {
+export const getAuthorization = (ctx: KoaContext) => (): AuthorizationHeader => {
+  const header = ctx.get("Authorization");
+
   if (!header) {
     throw new MissingAuthorizationHeaderError();
   }

@@ -1,5 +1,5 @@
 import { HttpStatus } from "@lindorm-io/core";
-import type { KoaContext, Middleware } from "../../typing";
+import { KoaContext, Middleware } from "../../typing";
 
 export const errorMiddleware: Middleware<KoaContext> = async (ctx, next): Promise<void> => {
   try {

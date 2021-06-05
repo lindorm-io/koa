@@ -1,4 +1,4 @@
-import type { KoaContext, Middleware } from "../../typing";
+import { KoaContext, Middleware } from "../../typing";
 
 interface AgentContext extends KoaContext {
   userAgent: Record<string, any>;
