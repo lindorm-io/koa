@@ -1,7 +1,8 @@
 import { KoaContextAware } from "../../class";
 import { controllerMiddleware } from "./controller-middleware";
+import { logger } from "../../test";
 
-class Test extends KoaContextAware {}
+class Test extends KoaContextAware<any> {}
 
 describe("controllerMiddleware", () => {
   let ctx: any;
@@ -11,6 +12,7 @@ describe("controllerMiddleware", () => {
     ctx = {
       controller: {},
       handler: { data: "data" },
+      logger,
     };
     next = () => Promise.resolve();
   });
