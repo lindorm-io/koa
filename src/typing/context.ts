@@ -35,7 +35,12 @@ interface KoaMetadata {
   sessionId: string | null;
 }
 
-export interface KoaContext extends ParameterizedContext<any, IRouterParamContext<any, Record<any, unknown>>> {
+type StateT = any;
+type CustomT = Record<any, any>;
+type ContextT = IRouterParamContext<StateT, CustomT>;
+type ResponseBodyT = Record<string, any>;
+
+export interface KoaContext<Body = ResponseBodyT> extends ParameterizedContext<StateT, ContextT, Body> {
   agent: KoaAgent;
   axios: unknown;
   cache: unknown;
