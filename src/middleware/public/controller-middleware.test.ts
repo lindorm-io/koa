@@ -2,7 +2,7 @@ import { KoaContextAware } from "../../class";
 import { controllerMiddleware } from "./controller-middleware";
 import { logger } from "../../test";
 
-class Test extends KoaContextAware<any> {}
+class Test extends KoaContextAware {}
 
 describe("controllerMiddleware", () => {
   let ctx: any;
