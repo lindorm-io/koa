@@ -13,6 +13,7 @@ describe("controllerMiddleware", () => {
       controller: {},
       handler: { data: "data" },
       logger,
+      metrics: {},
     };
     next = () => Promise.resolve();
   });
