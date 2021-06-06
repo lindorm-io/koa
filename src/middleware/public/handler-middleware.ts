@@ -9,7 +9,7 @@ interface Options {
 export const handlerMiddleware =
   (Handler: typeof KoaContextAware, options?: Options): Middleware<KoaContext> =>
   async (ctx, next): Promise<void> => {
-    const start = Date.now();
+    const metric = ctx.getMetric("handler");
 
     /*
      * Ignoring TS here since KoaContextAware needs to be abstract
@@ -18,7 +18,7 @@ export const handlerMiddleware =
     // @ts-ignore
     ctx.handler[camelCase(options?.key || Handler.name)] = new Handler(ctx);
 
-    ctx.metrics.handler = (ctx.metrics.handler || 0) + (Date.now() - start);
+    metric.end();
 
     await next();
   };

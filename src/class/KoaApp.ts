@@ -12,7 +12,7 @@ import {
   errorMiddleware,
   initContextMiddleware,
   metadataMiddleware,
-  metricsMiddleware,
+  responseTimeMiddleware,
   sessionLoggerMiddleware,
   utilContextMiddleware,
 } from "../middleware/default";
@@ -44,12 +44,12 @@ export class KoaApp {
       defaultStatusMiddleware,
       bodyCaseSwitchMiddleware,
       initContextMiddleware,
+      utilContextMiddleware,
       agentMiddleware,
       metadataMiddleware,
       sessionLoggerMiddleware({ logger: this.logger }),
-      metricsMiddleware,
       errorMiddleware,
-      utilContextMiddleware,
+      responseTimeMiddleware,
     ];
     this.port = options.port;
     this.workers = [];

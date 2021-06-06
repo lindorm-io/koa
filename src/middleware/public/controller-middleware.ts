@@ -9,7 +9,7 @@ interface Options {
 export const controllerMiddleware =
   (Controller: typeof KoaContextAware, options?: Options): Middleware<KoaContext> =>
   async (ctx, next): Promise<void> => {
-    const start = Date.now();
+    const metric = ctx.getMetric("controller");
 
     /*
      * Ignoring TS here since KoaContextAware needs to be abstract
@@ -18,7 +18,7 @@ export const controllerMiddleware =
     // @ts-ignore
     ctx.controller[camelCase(options?.key || Controller.name)] = new Controller(ctx);
 
-    ctx.metrics.controller = (ctx.metrics.controller || 0) + (Date.now() - start);
+    metric.end();
 
     await next();
   };

@@ -1,7 +1,8 @@
+import { AuthorizationHeader } from "../util";
 import { Logger } from "@lindorm-io/winston";
+import { Metric } from "../class";
 import { Request } from "koa";
 import { RouterContext } from "koa-router";
-import { AuthorizationHeader } from "../util";
 
 interface KoaAgent {
   browser: string;
@@ -62,4 +63,5 @@ export interface KoaContext<Body extends DefaultBody = DefaultBody> extends Rout
   token: unknown;
 
   getAuthorization(): AuthorizationHeader;
+  getMetric(key: string): Metric;
 }

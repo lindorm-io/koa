@@ -1,12 +1,13 @@
-import { KoaContextAware } from "../../class";
+import { KoaContextAware, Metric } from "../../class";
 import { controllerMiddleware } from "./controller-middleware";
 import { logger } from "../../test";
 
 class Test extends KoaContextAware {}
 
+const next = () => Promise.resolve();
+
 describe("controllerMiddleware", () => {
   let ctx: any;
-  let next: any;
 
   beforeEach(() => {
     ctx = {
@@ -15,7 +16,7 @@ describe("controllerMiddleware", () => {
       logger,
       metrics: {},
     };
-    next = () => Promise.resolve();
+    ctx.getMetric = (key: string) => new Metric(ctx, key);
   });
 
   test("should set controller on context", async () => {

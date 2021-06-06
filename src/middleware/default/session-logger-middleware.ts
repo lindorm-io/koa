@@ -26,6 +26,7 @@ export const sessionLoggerMiddleware =
           body: ctx.response.body,
           header: ctx.response.header,
           message: ctx.response.message,
+          metrics: ctx.metrics,
           status: ctx.response.status,
         },
       });
