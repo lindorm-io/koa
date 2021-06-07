@@ -1,4 +1,4 @@
-import { APIError } from "@lindorm-io/errors";
+import { ServerError } from "@lindorm-io/errors";
 import { errorMiddleware } from "./error-middleware";
 
 describe("errorMiddleware", () => {
@@ -10,16 +10,23 @@ describe("errorMiddleware", () => {
       app: {
         emit: jest.fn(),
       },
+      logger: {
+        error: jest.fn(),
+      },
     };
     next = () =>
       Promise.reject(
-        new APIError("message", {
-          debug: { json: "debug" },
-          details: "details",
-          errorCode: "errorCode",
-          publicData: { json: "publicData" },
-          statusCode: 300,
-          title: "title",
+        new ServerError("error-message", {
+          developer: {
+            debug: { value: "developer-debug" },
+            details: "developer-details",
+          },
+          public: {
+            data: { value: "data-value" },
+            description: "public-description",
+            title: "public-title",
+          },
+          statusCode: ServerError.StatusCode.LOOP_DETECTED,
         }),
       );
   });
@@ -27,18 +34,50 @@ describe("errorMiddleware", () => {
   test("should resolve with error data", async () => {
     await expect(errorMiddleware(ctx, next)).resolves.toBeUndefined();
 
-    expect(ctx.app.emit).toHaveBeenCalled();
-    expect(ctx.status).toBe(300);
-    expect(ctx.body).toMatchSnapshot();
+    expect(ctx.status).toBe(508);
+    expect(ctx.body).toStrictEqual({
+      error: {
+        data: {
+          value: "data-value",
+        },
+        description: "public-description",
+        message: "error-message",
+        name: "ServerError",
+        title: "public-title",
+      },
+    });
+    expect(ctx.logger.error).toHaveBeenCalledWith("Service Error", expect.any(ServerError));
   });
 
   test("should resolve with default error data", async () => {
-    next = () => Promise.reject(new APIError("message"));
+    next = () => Promise.reject(new ServerError("message"));
 
     await expect(errorMiddleware(ctx, next)).resolves.toBeUndefined();
 
-    expect(ctx.app.emit).toHaveBeenCalled();
     expect(ctx.status).toBe(500);
-    expect(ctx.body).toMatchSnapshot();
+    expect(ctx.body).toStrictEqual({
+      error: {
+        data: {},
+        description: null,
+        message: "message",
+        name: "ServerError",
+        title: null,
+      },
+    });
+    expect(ctx.logger.error).toHaveBeenCalledWith("Service Error", expect.any(ServerError));
+  });
+
+  test("should resolve even when something fails", async () => {
+    ctx.logger.error.mockImplementationOnce(() => {
+      throw new Error("unexpected");
+    });
+
+    await expect(errorMiddleware(ctx, next)).resolves.toBeUndefined();
+
+    expect(ctx.status).toBe(500);
+    expect(ctx.body).toStrictEqual({
+      error: new Error("unexpected"),
+    });
+    expect(ctx.app.emit).toHaveBeenCalledWith("error", new Error("unexpected"));
   });
 });

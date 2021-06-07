@@ -5,18 +5,24 @@ export const errorMiddleware: Middleware<KoaContext> = async (ctx, next): Promis
   try {
     await next();
   } catch (err) {
-    ctx.status = err.statusCode || err.status || HttpStatus.ServerError.INTERNAL_SERVER_ERROR;
-    ctx.body = {
-      error: {
-        code: err.errorCode || err.code || null,
-        data: err.publicData || err.data || null,
-        details: err.details || null,
-        message: err.message,
-        name: err.name || null,
-        title: err.title || null,
-      },
-    };
+    try {
+      ctx.status = err.statusCode || err.status || HttpStatus.ServerError.INTERNAL_SERVER_ERROR;
+      ctx.body = {
+        error: {
+          name: err.name || null,
+          title: err.public?.title || err.title || null,
+          message: err.message,
+          description: err.public?.description || err.description || null,
+          data: err.public?.data || err.data || {},
+        },
+      };
 
-    ctx.app.emit("error", err);
+      ctx.logger.error("Service Error", err);
+    } catch (err) {
+      ctx.status = HttpStatus.ServerError.INTERNAL_SERVER_ERROR;
+      ctx.body = { error: err };
+
+      ctx.app.emit("error", err);
+    }
   }
 };
