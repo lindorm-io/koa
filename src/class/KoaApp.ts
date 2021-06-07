@@ -26,11 +26,12 @@ export class KoaApp {
   public readonly app: Koa;
   public readonly router: Router;
 
-  private loaded: boolean;
   private readonly logger: Logger;
   private readonly middleware: Array<Middleware<any>>;
   private readonly port: number;
   private readonly workers: Array<IntervalWorker>;
+
+  private loaded: boolean;
 
   public constructor(options: Options) {
     this.app = new Koa();
@@ -100,13 +101,14 @@ export class KoaApp {
   private listen(): void {
     this.app.listen(this.port, (): void => {
       this.logger.info(`listening on server port: ${this.port}`);
+
       this.app.emit("start");
     });
   }
 
   private loadEmitter(): void {
-    this.app.on("error", (error: Error): void => {
-      this.logger.error("app caught error", error);
+    this.app.on("error", (error): void => {
+      console.error("app caught error", error);
     });
 
     this.app.on("start", (): void => {
@@ -137,6 +139,7 @@ export class KoaApp {
       const timeout = setTimeout(() => {
         reject(new Error("app start has timed out"));
       }, 30000);
+
       this.app.on("start", () => {
         clearTimeout(timeout);
         resolve();
