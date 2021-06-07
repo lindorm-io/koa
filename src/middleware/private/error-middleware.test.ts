@@ -76,7 +76,11 @@ describe("errorMiddleware", () => {
 
     expect(ctx.status).toBe(500);
     expect(ctx.body).toStrictEqual({
-      error: new Error("unexpected"),
+      error: {
+        name: "UnexpectedError",
+        title: "Unexpected Error",
+        message: "Something went wrong",
+      },
     });
     expect(ctx.app.emit).toHaveBeenCalledWith("error", new Error("unexpected"));
   });

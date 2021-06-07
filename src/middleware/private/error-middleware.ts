@@ -20,7 +20,13 @@ export const errorMiddleware: Middleware<KoaContext> = async (ctx, next): Promis
       ctx.logger.error("Service Error", err);
     } catch (err) {
       ctx.status = HttpStatus.ServerError.INTERNAL_SERVER_ERROR;
-      ctx.body = { error: err };
+      ctx.body = {
+        error: {
+          name: "UnexpectedError",
+          title: "Unexpected Error",
+          message: "Something went wrong",
+        },
+      };
 
       ctx.app.emit("error", err);
     }
