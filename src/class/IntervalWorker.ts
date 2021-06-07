@@ -2,7 +2,7 @@ import Timeout = NodeJS.Timeout;
 import { EventEmitter } from "events";
 import { Logger } from "@lindorm-io/winston";
 
-export interface IIntervalWorkerOptions {
+interface Options {
   callback: () => Promise<any>;
   time: number;
   logger: Logger;
@@ -21,7 +21,7 @@ export class IntervalWorker extends EventEmitter {
   private readonly logger: Logger;
   private readonly time: number;
 
-  public constructor(options: IIntervalWorkerOptions) {
+  public constructor(options: Options) {
     super();
 
     this.callback = options.callback;
