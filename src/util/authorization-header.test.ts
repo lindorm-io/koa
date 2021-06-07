@@ -1,9 +1,5 @@
 import { getAuthorization } from "./authorization-header";
-import {
-  InvalidAuthorizationHeaderLengthError,
-  InvalidAuthorizationHeaderTypeError,
-  MissingAuthorizationHeaderError,
-} from "../error";
+import { ClientError } from "@lindorm-io/errors";
 
 describe("authorization-header.ts", () => {
   let ctx: any;
@@ -33,24 +29,24 @@ describe("authorization-header.ts", () => {
   });
 
   test("should throw an error when header is unavailable", () => {
-    expect(() => getAuthorization(ctx)()).toThrow(expect.any(MissingAuthorizationHeaderError));
+    expect(() => getAuthorization(ctx)()).toThrow(expect.any(ClientError));
   });
 
   test("should throw an error when header is too short", () => {
     ctx.get = () => "one";
 
-    expect(() => getAuthorization(ctx)()).toThrow(expect.any(InvalidAuthorizationHeaderLengthError));
+    expect(() => getAuthorization(ctx)()).toThrow(expect.any(ClientError));
   });
 
   test("should throw an error when header is too long", () => {
     ctx.get = () => "one two three";
 
-    expect(() => getAuthorization(ctx)()).toThrow(expect.any(InvalidAuthorizationHeaderLengthError));
+    expect(() => getAuthorization(ctx)()).toThrow(expect.any(ClientError));
   });
 
   test("should throw an error when header type is unexpected", () => {
     ctx.get = () => "one two";
 
-    expect(() => getAuthorization(ctx)()).toThrow(expect.any(InvalidAuthorizationHeaderTypeError));
+    expect(() => getAuthorization(ctx)()).toThrow(expect.any(ClientError));
   });
 });
