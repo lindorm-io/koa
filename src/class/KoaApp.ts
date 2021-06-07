@@ -15,7 +15,7 @@ import {
   responseTimeMiddleware,
   sessionLoggerMiddleware,
   utilContextMiddleware,
-} from "../middleware/default";
+} from "../middleware/private";
 
 interface Options {
   logger: Logger;
