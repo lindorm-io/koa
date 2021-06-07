@@ -17,7 +17,7 @@ import {
   utilContextMiddleware,
 } from "../middleware/default";
 
-export interface IKoaAppOptions {
+interface Options {
   logger: Logger;
   port: number;
 }
@@ -32,7 +32,7 @@ export class KoaApp {
   private readonly port: number;
   private readonly workers: Array<IntervalWorker>;
 
-  public constructor(options: IKoaAppOptions) {
+  public constructor(options: Options) {
     this.app = new Koa();
     this.router = new Router();
 
