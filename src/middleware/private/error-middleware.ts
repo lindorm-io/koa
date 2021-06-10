@@ -9,11 +9,12 @@ export const errorMiddleware: Middleware<KoaContext> = async (ctx, next): Promis
       ctx.status = err.statusCode || err.status || HttpStatus.ServerError.INTERNAL_SERVER_ERROR;
       ctx.body = {
         error: {
-          name: err.name || null,
-          title: err.public?.title || err.title || null,
+          code: err.code || null,
+          data: err.data || {},
+          description: err.description || null,
           message: err.message,
-          description: err.public?.description || err.description || null,
-          data: err.public?.data || err.data || {},
+          name: err.name || null,
+          title: err.title || null,
         },
       };
 

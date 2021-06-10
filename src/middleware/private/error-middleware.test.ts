@@ -17,16 +17,12 @@ describe("errorMiddleware", () => {
     next = () =>
       Promise.reject(
         new ServerError("error-message", {
-          developer: {
-            debug: { value: "developer-debug" },
-            details: "developer-details",
-          },
-          public: {
-            data: { value: "data-value" },
-            description: "public-description",
-            title: "public-title",
-          },
+          code: "ERROR_CODE",
+          data: { value: "data" },
+          debug: { value: "debug", notes: "notes" },
+          description: "description",
           statusCode: ServerError.StatusCode.LOOP_DETECTED,
+          title: "title",
         }),
       );
   });
@@ -37,13 +33,12 @@ describe("errorMiddleware", () => {
     expect(ctx.status).toBe(508);
     expect(ctx.body).toStrictEqual({
       error: {
-        data: {
-          value: "data-value",
-        },
-        description: "public-description",
+        code: "ERROR_CODE",
+        data: { value: "data" },
+        description: "description",
         message: "error-message",
         name: "ServerError",
-        title: "public-title",
+        title: "title",
       },
     });
     expect(ctx.logger.error).toHaveBeenCalledWith("Service Error", expect.any(ServerError));
@@ -57,6 +52,7 @@ describe("errorMiddleware", () => {
     expect(ctx.status).toBe(500);
     expect(ctx.body).toStrictEqual({
       error: {
+        code: null,
         data: {},
         description: null,
         message: "message",
