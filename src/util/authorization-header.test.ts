@@ -29,24 +29,24 @@ describe("authorization-header.ts", () => {
   });
 
   test("should throw an error when header is unavailable", () => {
-    expect(() => getAuthorization(ctx)()).toThrow(expect.any(ClientError));
+    expect(() => getAuthorization(ctx)()).toThrow(ClientError);
   });
 
   test("should throw an error when header is too short", () => {
     ctx.get = () => "one";
 
-    expect(() => getAuthorization(ctx)()).toThrow(expect.any(ClientError));
+    expect(() => getAuthorization(ctx)()).toThrow(ClientError);
   });
 
   test("should throw an error when header is too long", () => {
     ctx.get = () => "one two three";
 
-    expect(() => getAuthorization(ctx)()).toThrow(expect.any(ClientError));
+    expect(() => getAuthorization(ctx)()).toThrow(ClientError);
   });
 
   test("should throw an error when header type is unexpected", () => {
     ctx.get = () => "one two";
 
-    expect(() => getAuthorization(ctx)()).toThrow(expect.any(ClientError));
+    expect(() => getAuthorization(ctx)()).toThrow(ClientError);
   });
 });
