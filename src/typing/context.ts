@@ -1,7 +1,7 @@
 import { AuthorizationHeader } from "./util";
 import { Logger } from "@lindorm-io/winston";
 import { Metric } from "../class";
-import { Request } from "koa";
+import { Request, Response } from "koa";
 import { RouterContext } from "koa-router";
 
 interface KoaAgent {
@@ -37,13 +37,18 @@ interface KoaMetadata {
   sessionId: string | null;
 }
 
-type DefaultBody = Record<string, any>;
+export type DefaultObject = Record<string, any>;
 
-interface KoaRequest<Body extends DefaultBody> extends Request {
+interface KoaRequest<Body extends DefaultObject> extends Request {
   body: Body;
 }
 
-export interface KoaContext<Body extends DefaultBody = DefaultBody> extends RouterContext {
+interface KoaResponse<Body> extends Response {
+  body: Body;
+}
+
+export interface KoaContext<RequestBody extends DefaultObject = DefaultObject, ResponseBody = unknown>
+  extends RouterContext {
   agent: KoaAgent;
   axios: Record<string, unknown>;
   cache: Record<string, unknown>;
@@ -59,8 +64,11 @@ export interface KoaContext<Body extends DefaultBody = DefaultBody> extends Rout
   metadataHeaders: KoaMetadataHeaders;
   metrics: Record<string, number>;
   repository: unknown;
-  request: KoaRequest<Body>;
   token: Record<string, unknown>;
+
+  request: KoaRequest<RequestBody>;
+  response: KoaResponse<ResponseBody>;
+  body: ResponseBody;
 
   getAuthorization(): AuthorizationHeader;
   getMetric(key: string): Metric;
