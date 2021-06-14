@@ -44,6 +44,7 @@
     "@lindorm-io/core": "0.2.5",
     "@lindorm-io/errors": "0.1.5",
     "@lindorm-io/winston": "0.1.6",
+    "joi": "^17.4.0",
     "koa": "2.13.1",
     "koa-bodyparser": "4.3.0",
     "koa-router": "10.0.0",

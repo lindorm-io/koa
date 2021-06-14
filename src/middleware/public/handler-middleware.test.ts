@@ -6,7 +6,7 @@ class Test extends KoaContextAware {}
 
 const next = () => Promise.resolve();
 
-describe("controllerMiddleware", () => {
+describe("handlerMiddleware", () => {
   let ctx: any;
 
   beforeEach(() => {
