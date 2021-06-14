@@ -53,9 +53,7 @@ export interface KoaContext<RequestBody extends DefaultObject = DefaultObject, R
   axios: Record<string, unknown>;
   cache: Record<string, unknown>;
   client: Record<string, unknown>;
-  controller: Record<string, unknown>;
   entity: Record<string, unknown>;
-  handler: Record<string, unknown>;
   jwt: unknown;
   keys: Array<unknown>;
   keystore: unknown;
