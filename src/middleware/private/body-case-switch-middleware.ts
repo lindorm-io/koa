@@ -1,10 +1,10 @@
 import { KoaContext, Middleware } from "../../typing";
-import { camelKeys, snakeKeys } from "@lindorm-io/core";
+import { camelKeys, isObjectStrict, snakeKeys } from "@lindorm-io/core";
 
 export const bodyCaseSwitchMiddleware: Middleware<KoaContext> = async (ctx, next): Promise<void> => {
-  ctx.request.body = ctx.request.body ? camelKeys(ctx.request.body) : {};
+  ctx.request.body = isObjectStrict(ctx.request.body) ? camelKeys(ctx.request.body) : {};
 
   await next();
 
-  ctx.body = ctx.body ? snakeKeys(ctx.body) : ctx.body;
+  ctx.body = isObjectStrict(ctx.body) ? snakeKeys(ctx.body) : ctx.body;
 };

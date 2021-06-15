@@ -53,7 +53,15 @@ describe("bodyCaseSwitchMiddleware", () => {
     ctx = { request: { body: undefined }, body: undefined };
 
     await expect(bodyCaseSwitchMiddleware(ctx, next)).resolves.toBeUndefined();
-    expect(ctx.request.body).toMatchSnapshot();
-    expect(ctx.body).toMatchSnapshot();
+    expect(ctx.request.body).toStrictEqual({});
+    expect(ctx.body).toBeUndefined();
+  });
+
+  test("should not convert when body is not object", async () => {
+    ctx = { request: { body: "string" }, body: "string" };
+
+    await expect(bodyCaseSwitchMiddleware(ctx, next)).resolves.toBeUndefined();
+    expect(ctx.request.body).toStrictEqual({});
+    expect(ctx.body).toBe("string");
   });
 });
