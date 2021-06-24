@@ -1,4 +1,4 @@
-import { ServerError } from "@lindorm-io/errors";
+import { RedirectError, ServerError } from "@lindorm-io/errors";
 import { errorMiddleware } from "./error-middleware";
 
 describe("errorMiddleware", () => {
@@ -13,6 +13,7 @@ describe("errorMiddleware", () => {
       logger: {
         error: jest.fn(),
       },
+      redirect: jest.fn(),
     };
     next = () =>
       Promise.reject(
@@ -41,7 +42,29 @@ describe("errorMiddleware", () => {
         title: "title",
       },
     });
-    expect(ctx.logger.error).toHaveBeenCalledWith("Service Error", expect.any(ServerError));
+    expect(ctx.logger.error).toHaveBeenCalled();
+  });
+
+  test("should redirect with error data", async () => {
+    next = () =>
+      Promise.reject(
+        new RedirectError("error", {
+          code: "error_code",
+          description: "error_description",
+          redirect: "https://test.lindorm.io/",
+          state: "error_state",
+          uri: "https://error.lindorm.io/error_code",
+        }),
+      );
+
+    await expect(errorMiddleware(ctx, next)).resolves.toBeUndefined();
+
+    expect(ctx.status).toBeUndefined();
+    expect(ctx.body).toBeUndefined();
+    expect(ctx.logger.error).toHaveBeenCalled();
+    expect(ctx.redirect).toHaveBeenCalledWith(
+      "https://test.lindorm.io/?error=error_code&error_description=error_description&error_uri=https%3A%2F%2Ferror.lindorm.io%2Ferror_code&state=error_state",
+    );
   });
 
   test("should resolve with default error data", async () => {
@@ -60,7 +83,7 @@ describe("errorMiddleware", () => {
         title: null,
       },
     });
-    expect(ctx.logger.error).toHaveBeenCalledWith("Service Error", expect.any(ServerError));
+    expect(ctx.logger.error).toHaveBeenCalled();
   });
 
   test("should resolve even when something fails", async () => {
