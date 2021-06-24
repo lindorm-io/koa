@@ -1,4 +1,4 @@
-import { DefaultObject, KoaContext } from "./context";
+import { KoaContext } from "./context";
 
 export type ControllerResponse<ResponseData> = Promise<{
   data?: ResponseData;
@@ -6,6 +6,7 @@ export type ControllerResponse<ResponseData> = Promise<{
   status?: number;
 }>;
 
-export type Controller<Context extends KoaContext = KoaContext, ResponseData extends DefaultObject = DefaultObject> = (
-  ctx: Context,
-) => ControllerResponse<ResponseData>;
+export type Controller<
+  Context extends KoaContext = KoaContext,
+  ResponseData extends Record<string, unknown> = Record<string, unknown>,
+> = (ctx: Context) => ControllerResponse<ResponseData>;

@@ -37,9 +37,7 @@ interface KoaMetadata {
   sessionId: string | null;
 }
 
-export type DefaultObject = Record<string, any>;
-
-interface KoaRequest<Body extends DefaultObject> extends Request {
+interface KoaRequest<Body extends Record<string, unknown>> extends Request {
   body: Body;
 }
 
@@ -47,8 +45,10 @@ interface KoaResponse<Body> extends Response {
   body: Body;
 }
 
-export interface KoaContext<RequestBody extends DefaultObject = DefaultObject, ResponseBody = unknown>
-  extends RouterContext {
+export interface KoaContext<
+  RequestBody extends Record<string, unknown> = Record<string, unknown>,
+  ResponseBody = unknown,
+> extends RouterContext {
   agent: KoaAgent;
   axios: Record<string, unknown>;
   cache: Record<string, unknown>;
