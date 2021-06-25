@@ -47,6 +47,7 @@ interface KoaResponse<Body> extends Response {
 
 export interface KoaContext<
   RequestBody extends Record<string, unknown> = Record<string, unknown>,
+  RequestParams extends Record<string, string> = Record<string, string>,
   ResponseBody = unknown,
 > extends RouterContext {
   agent: KoaAgent;
@@ -64,6 +65,7 @@ export interface KoaContext<
   repository: unknown;
   token: Record<string, unknown>;
 
+  params: RequestParams;
   request: KoaRequest<RequestBody>;
   response: KoaResponse<ResponseBody>;
   body: ResponseBody;
