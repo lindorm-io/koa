@@ -37,7 +37,7 @@ interface KoaMetadata {
   sessionId: string | null;
 }
 
-interface KoaRequest<Body extends Record<string, unknown>> extends Request {
+interface KoaRequest<Body extends Record<string, any>> extends Request {
   body: Body;
 }
 
@@ -46,9 +46,9 @@ interface KoaResponse<Body> extends Response {
 }
 
 export interface KoaContext<
-  RequestBody extends Record<string, unknown> = Record<string, unknown>,
+  RequestBody extends Record<string, string> = Record<string, any>,
   RequestParams extends Record<string, string> = Record<string, string>,
-  ResponseBody = unknown,
+  ResponseBody = any,
 > extends RouterContext {
   agent: KoaAgent;
   axios: Record<string, unknown>;
