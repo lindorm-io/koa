@@ -1,4 +1,5 @@
 import { AuthorizationHeader } from "./util";
+import { Environment } from "../enum";
 import { Logger } from "@lindorm-io/winston";
 import { Metric } from "../class";
 import { Request, Response } from "koa";
@@ -14,25 +15,25 @@ interface KoaAgent {
 }
 
 interface KoaMetadataHeaders {
-  "X-Client-Environment": string | null;
   "X-Client-ID": string | null;
-  "X-Client-Name": string | null;
+  "X-Client-Environment": Environment | null;
   "X-Client-Platform": string | null;
   "X-Client-Version": string | null;
   "X-Correlation-ID": string | null;
   "X-Device-ID": string | null;
+  "X-Device-Unique-ID": string | null;
   "X-Installation-ID": string | null;
   "X-Session-ID": string | null;
 }
 
 interface KoaMetadata {
-  clientEnvironment: string | null;
   clientId: string | null;
-  clientName: string | null;
+  clientEnvironment: Environment | null;
   clientPlatform: string | null;
   clientVersion: string | null;
   correlationId: string | null;
   deviceId: string | null;
+  deviceUniqueId: string | null;
   installationId: string | null;
   sessionId: string | null;
 }

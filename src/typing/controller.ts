@@ -8,5 +8,5 @@ export type ControllerResponse<ResponseData> = Promise<{
 
 export type Controller<
   Context extends KoaContext = KoaContext,
-  ResponseData extends Record<string, unknown> = Record<string, unknown>,
+  ResponseData extends Record<string, any> = Record<string, any>,
 > = (ctx: Context) => ControllerResponse<ResponseData>;
