@@ -7,7 +7,7 @@ import { Logger } from "@lindorm-io/winston";
 import { Middleware } from "../typing";
 import {
   agentMiddleware,
-  bodyCaseSwitchMiddleware,
+  caseSwitchMiddleware,
   defaultStatusMiddleware,
   errorMiddleware,
   initContextMiddleware,
@@ -43,7 +43,7 @@ export class KoaApp {
       userAgent,
       bodyParser(),
       defaultStatusMiddleware,
-      bodyCaseSwitchMiddleware,
+      caseSwitchMiddleware,
       initContextMiddleware,
       utilContextMiddleware,
       agentMiddleware,

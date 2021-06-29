@@ -14,6 +14,20 @@ Object {
 }
 `;
 
+exports[`bodyCaseSwitchMiddleware should transform all incoming params to camelCase 1`] = `
+Object {
+  "array": Array [
+    "array",
+  ],
+  "camelCase": "camelCase",
+  "date": 2020-01-01T08:00:00.000Z,
+  "error": [Error: error],
+  "pascalCase": "PascalCase",
+  "snakeCase": "snake_case",
+  "string": "string",
+}
+`;
+
 exports[`bodyCaseSwitchMiddleware should transform all outgoing body to snake_case 1`] = `
 Object {
   "array": Array [
