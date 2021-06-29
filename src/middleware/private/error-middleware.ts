@@ -14,7 +14,7 @@ export const errorMiddleware: Middleware<KoaContext> = async (ctx, next): Promis
 
         url.searchParams.append("error", encodeURI(err.code));
 
-        if (err.description.length) {
+        if (err.description?.length) {
           url.searchParams.append("error_description", encodeURI(err.description));
         }
         if (err.uri?.length) {
