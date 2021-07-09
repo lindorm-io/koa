@@ -26,6 +26,15 @@ describe("bodyCaseSwitchMiddleware", () => {
           string,
         },
       },
+      body: {
+        camelCase: "camelCase",
+        PascalCase: "PascalCase",
+        snake_case: "snake_case",
+        array,
+        date,
+        error,
+        string,
+      },
       params: {
         camelCase: "camelCase",
         PascalCase: "PascalCase",
@@ -35,7 +44,7 @@ describe("bodyCaseSwitchMiddleware", () => {
         error,
         string,
       },
-      body: {
+      query: {
         camelCase: "camelCase",
         PascalCase: "PascalCase",
         snake_case: "snake_case",
@@ -59,6 +68,12 @@ describe("bodyCaseSwitchMiddleware", () => {
     expect(ctx.params).toMatchSnapshot();
   });
 
+  test("should transform all incoming query to camelCase", async () => {
+    await expect(caseSwitchMiddleware(ctx, next)).resolves.toBeUndefined();
+
+    expect(ctx.query).toMatchSnapshot();
+  });
+
   test("should transform all outgoing body to snake_case", async () => {
     await expect(caseSwitchMiddleware(ctx, next)).resolves.toBeUndefined();
 
@@ -76,7 +91,7 @@ describe("bodyCaseSwitchMiddleware", () => {
   });
 
   test("should not convert response body when not object", async () => {
-    ctx = { params: "", request: { body: {} }, body: "string" };
+    ctx = { params: "", query: "", request: { body: {} }, body: "string" };
 
     await expect(caseSwitchMiddleware(ctx, next)).resolves.toBeUndefined();
 
