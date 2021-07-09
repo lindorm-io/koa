@@ -46,11 +46,8 @@ interface KoaResponse<Body> extends Response {
   body: Body;
 }
 
-export interface KoaContext<
-  RequestBody extends Record<string, string> = Record<string, any>,
-  RequestParams extends Record<string, string> = Record<string, string>,
-  ResponseBody = any,
-> extends RouterContext {
+export interface KoaContext<RequestData extends Record<string, string> = Record<string, any>, ResponseBody = any>
+  extends RouterContext {
   agent: KoaAgent;
   axios: Record<string, unknown>;
   cache: Record<string, unknown>;
@@ -66,10 +63,12 @@ export interface KoaContext<
   repository: unknown;
   token: Record<string, unknown>;
 
-  params: RequestParams;
-  request: KoaRequest<RequestBody>;
-  response: KoaResponse<ResponseBody>;
   body: ResponseBody;
+  data: RequestData;
+  params: Record<string, string>;
+  query: Record<string, string>;
+  request: KoaRequest<Record<string, any>>;
+  response: KoaResponse<ResponseBody>;
 
   getAuthorization(): AuthorizationHeader;
   getMetric(key: string): Metric;

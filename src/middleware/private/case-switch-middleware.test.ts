@@ -17,9 +17,9 @@ describe("bodyCaseSwitchMiddleware", () => {
     ctx = {
       request: {
         body: {
-          camelCase: "camelCase",
-          PascalCase: "PascalCase",
-          snake_case: "snake_case",
+          camelCaseOne: "camelCaseOne",
+          PascalCaseOne: "PascalCaseOne",
+          snake_case_one: "snake_case_one",
           array,
           date,
           error,
@@ -27,27 +27,27 @@ describe("bodyCaseSwitchMiddleware", () => {
         },
       },
       body: {
-        camelCase: "camelCase",
-        PascalCase: "PascalCase",
-        snake_case: "snake_case",
+        camelCaseTwo: "camelCaseTwo",
+        PascalCaseTwo: "PascalCaseTwo",
+        snake_case_two: "snake_case_two",
         array,
         date,
         error,
         string,
       },
       params: {
-        camelCase: "camelCase",
-        PascalCase: "PascalCase",
-        snake_case: "snake_case",
+        camelCaseThree: "camelCaseThree",
+        PascalCaseThree: "PascalCaseThree",
+        snake_case_three: "snake_case_three",
         array,
         date,
         error,
         string,
       },
       query: {
-        camelCase: "camelCase",
-        PascalCase: "PascalCase",
-        snake_case: "snake_case",
+        camelCaseFour: "camelCaseFour",
+        PascalCaseFour: "PascalCaseFour",
+        snake_case_four: "snake_case_four",
         array,
         date,
         error,
@@ -72,6 +72,12 @@ describe("bodyCaseSwitchMiddleware", () => {
     await expect(caseSwitchMiddleware(ctx, next)).resolves.toBeUndefined();
 
     expect(ctx.query).toMatchSnapshot();
+  });
+
+  test("should merge all incoming data into one object on context", async () => {
+    await expect(caseSwitchMiddleware(ctx, next)).resolves.toBeUndefined();
+
+    expect(ctx.data).toMatchSnapshot();
   });
 
   test("should transform all outgoing body to snake_case", async () => {

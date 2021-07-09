@@ -1,15 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`bodyCaseSwitchMiddleware should merge all incoming data into one object on context 1`] = `
+Object {
+  "array": Array [
+    "array",
+  ],
+  "camelCaseFour": "camelCaseFour",
+  "camelCaseOne": "camelCaseOne",
+  "camelCaseThree": "camelCaseThree",
+  "date": 2020-01-01T08:00:00.000Z,
+  "error": [Error: error],
+  "pascalCaseFour": "PascalCaseFour",
+  "pascalCaseOne": "PascalCaseOne",
+  "pascalCaseThree": "PascalCaseThree",
+  "snakeCaseFour": "snake_case_four",
+  "snakeCaseOne": "snake_case_one",
+  "snakeCaseThree": "snake_case_three",
+  "string": "string",
+}
+`;
+
 exports[`bodyCaseSwitchMiddleware should transform all incoming body to camelCase 1`] = `
 Object {
   "array": Array [
     "array",
   ],
-  "camelCase": "camelCase",
+  "camelCaseOne": "camelCaseOne",
   "date": 2020-01-01T08:00:00.000Z,
   "error": [Error: error],
-  "pascalCase": "PascalCase",
-  "snakeCase": "snake_case",
+  "pascalCaseOne": "PascalCaseOne",
+  "snakeCaseOne": "snake_case_one",
   "string": "string",
 }
 `;
@@ -19,11 +39,31 @@ Object {
   "array": Array [
     "array",
   ],
-  "camelCase": "camelCase",
+  "camelCaseFour": "camelCaseFour",
+  "camelCaseOne": "camelCaseOne",
+  "camelCaseThree": "camelCaseThree",
   "date": 2020-01-01T08:00:00.000Z,
   "error": [Error: error],
-  "pascalCase": "PascalCase",
-  "snakeCase": "snake_case",
+  "pascalCaseFour": "PascalCaseFour",
+  "pascalCaseOne": "PascalCaseOne",
+  "pascalCaseThree": "PascalCaseThree",
+  "snakeCaseFour": "snake_case_four",
+  "snakeCaseOne": "snake_case_one",
+  "snakeCaseThree": "snake_case_three",
+  "string": "string",
+}
+`;
+
+exports[`bodyCaseSwitchMiddleware should transform all incoming query to camelCase 1`] = `
+Object {
+  "array": Array [
+    "array",
+  ],
+  "camelCaseFour": "camelCaseFour",
+  "date": 2020-01-01T08:00:00.000Z,
+  "error": [Error: error],
+  "pascalCaseFour": "PascalCaseFour",
+  "snakeCaseFour": "snake_case_four",
   "string": "string",
 }
 `;
@@ -33,11 +73,11 @@ Object {
   "array": Array [
     "array",
   ],
-  "camel_case": "camelCase",
+  "camel_case_two": "camelCaseTwo",
   "date": 2020-01-01T08:00:00.000Z,
   "error": [Error: error],
-  "pascal_case": "PascalCase",
-  "snake_case": "snake_case",
+  "pascal_case_two": "PascalCaseTwo",
+  "snake_case_two": "snake_case_two",
   "string": "string",
 }
 `;
