@@ -36,7 +36,7 @@ export class IntervalWorker extends EventEmitter {
 
     this.callback()
       .then((result: any) => {
-        this.logger.debug("worker success", { result });
+        this.logger.debug("worker success", result ? { result } : undefined);
         super.emit(IntervalWorkerEvent.SUCCESS, { result });
       })
       .catch((err: Error) => {
